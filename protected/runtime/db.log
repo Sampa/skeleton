@@ -1,0 +1,520 @@
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879672
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879672, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_lookup` `t` WHERE type=:type ORDER BY position. Bound with :type='PostStatus'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (72)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (16)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t` WHERE `t`.`username` IS NULL LIMIT 1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Post.php (203)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (76)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013' ORDER BY status, update_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` WHERE name LIKE :keyword ORDER BY frequency DESC, Name LIMIT 100. Bound with :keyword='%%'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (108)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879675
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879675, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_lookup` `t` WHERE type=:type ORDER BY position. Bound with :type='PostStatus'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (72)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (16)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t` WHERE `t`.`username` IS NULL LIMIT 1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Post.php (203)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (76)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013' ORDER BY status, update_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` WHERE name LIKE :keyword ORDER BY frequency DESC, Name LIMIT 100. Bound with :keyword='%%'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (108)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:16 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:16 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:16 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879683
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879683, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_lookup` `t` WHERE type=:type ORDER BY position. Bound with :type='PostStatus'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (72)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (16)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0=''
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Post.php (203)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (76)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_post` `t` WHERE (status=:ycp0) AND (FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013'). Bound with :ycp0='2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_post` `t` WHERE (status=:ycp0) AND (FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013') ORDER BY status, update_time DESC LIMIT 10. Bound with :ycp0='2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` WHERE name LIKE :keyword ORDER BY frequency DESC, Name LIMIT 100. Bound with :keyword='%%'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (108)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:23 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879687
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879687, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (6)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (6)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (377)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (15)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (377)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (15)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(DISTINCT `t`.`id`) FROM `tbl_post` `t`  WHERE (status=2)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT `t`.`id` AS `t0_c0`, `t`.`title` AS `t0_c1`, `t`.`content` AS `t0_c2`, `t`.`tags` AS `t0_c3`, `t`.`status` AS `t0_c4`, `t`.`create_time` AS `t0_c5`, `t`.`update_time` AS `t0_c6`, `t`.`author_id` AS `t0_c7`, `t`.`fileFolder` AS `t0_c8` FROM `tbl_post` `t`  WHERE (status=2) ORDER BY update_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT `post_id` AS `c`, COUNT(*) AS `s` FROM `tbl_comment` `t` WHERE (status=2) AND (`t`.`post_id` IN (25, 1, 2)) GROUP BY `post_id`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT `author`.`id` AS `t1_c0`, `author`.`username` AS `t1_c1`, `author`.`password` AS `t1_c2`, `author`.`email` AS `t1_c3`, `author`.`profile` AS `t1_c4`, `author`.`role` AS `t1_c5` FROM `tbl_user` `author`  WHERE (`author`.`id`=:ypl0). Bound with :ypl0='1'
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_view.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT `author`.`id` AS `t1_c0`, `author`.`username` AS `t1_c1`, `author`.`password` AS `t1_c2`, `author`.`email` AS `t1_c3`, `author`.`profile` AS `t1_c4`, `author`.`role` AS `t1_c5` FROM `tbl_user` `author`  WHERE (`author`.`id`=:ypl0). Bound with :ypl0='1'
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_view.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT `author`.`id` AS `t1_c0`, `author`.`username` AS `t1_c1`, `author`.`password` AS `t1_c2`, `author`.`email` AS `t1_c3`, `author`.`profile` AS `t1_c4`, `author`.`role` AS `t1_c5` FROM `tbl_user` `author`  WHERE (`author`.`id`=:ypl0). Bound with :ypl0='1'
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_view.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\index.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (238)
+2013/04/13 21:01:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\TagCloud.php (16)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\views\tags.php (9)
+2013/04/13 21:01:28 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\TagCloud.php (16)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\views\tags.php (9)
+2013/04/13 21:01:28 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` ORDER BY frequency DESC LIMIT 20
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (77)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\TagCloud.php (16)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\views\tags.php (9)
+2013/04/13 21:01:28 [trace] [system.db.CDbCommand] Querying SQL: SELECT `t`.`id` AS `t0_c0`, `t`.`content` AS `t0_c1`, `t`.`status` AS `t0_c2`, `t`.`create_time` AS `t0_c3`, `t`.`author` AS `t0_c4`, `t`.`email` AS `t0_c5`, `t`.`url` AS `t0_c6`, `t`.`post_id` AS `t0_c7`, `post`.`id` AS `t1_c0`, `post`.`title` AS `t1_c1`, `post`.`content` AS `t1_c2`, `post`.`tags` AS `t1_c3`, `post`.`status` AS `t1_c4`, `post`.`create_time` AS `t1_c5`, `post`.`update_time` AS `t1_c6`, `post`.`author_id` AS `t1_c7`, `post`.`fileFolder` AS `t1_c8` FROM `tbl_comment` `t`  LEFT OUTER JOIN `tbl_post` `post` ON (`t`.`post_id`=`post`.`id`)  WHERE (t.status=2) ORDER BY t.create_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (130)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\RecentComments.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\components\views\recentComments.php (9)
+2013/04/13 21:01:28 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\column2.php (22)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879710
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879710, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_lookup` `t` WHERE type=:type ORDER BY position. Bound with :type='PostStatus'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (72)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (16)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t` WHERE `t`.`username` IS NULL LIMIT 1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Post.php (203)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (76)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013' ORDER BY status, update_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` WHERE name LIKE :keyword ORDER BY frequency DESC, Name LIMIT 100. Bound with :keyword='%%'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (108)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:01:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879822
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879822, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_lookup` `t` WHERE type=:type ORDER BY position. Bound with :type='PostStatus'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (72)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (16)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:03:42 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t` WHERE `t`.`username` IS NULL LIMIT 1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Post.php (203)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (76)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013' ORDER BY status, update_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` WHERE name LIKE :keyword ORDER BY frequency DESC, Name LIMIT 100. Bound with :keyword='%%'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (108)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Executing SQL: DELETE FROM `actual_table_name` WHERE expire<:expire. Bound with :expire=1365879826
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT `data`
+FROM `actual_table_name`
+WHERE expire>:expire AND id=:id. Bound with :expire=1365879826, :id='hf8sh2mpt02636s5rg5d5keel2'
+in C:\Programmering\xampp\htdocs\skeleton\protected\modules\auth\components\AuthWebUser.php (27)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_post`
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (249)
+in C:\Programmering\xampp\htdocs\skeleton\index.php (13)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_lookup`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (24)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (68)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_lookup` `t` WHERE type=:type ORDER BY position. Bound with :type='PostStatus'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (72)
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Lookup.php (44)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (16)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_user`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\User.php (20)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t`
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_search.php (29)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (65)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_user` `t` WHERE `t`.`username` IS NULL LIMIT 1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Post.php (203)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (76)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013'
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_post` `t` WHERE FROM_UNIXTIME(create_time, '%d-%F-%Y') = '13-April-2013' ORDER BY status, update_time DESC LIMIT 10
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbGridView.php (54)
+in C:\Programmering\xampp\htdocs\skeleton\protected\extensions\bootstrap\widgets\TbExtendedGridView.php (220)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (140)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_tag`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (18)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `tbl_tag` `t` WHERE name LIKE :keyword ORDER BY frequency DESC, Name LIMIT 100. Bound with :keyword='%%'
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Tag.php (108)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\_form.php (94)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\post\admin.php (145)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `tbl_comment`
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (25)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)
+2013/04/13 21:03:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `tbl_comment` `t` WHERE status=1
+in C:\Programmering\xampp\htdocs\skeleton\protected\models\Comment.php (117)
+in C:\Programmering\xampp\htdocs\skeleton\protected\views\layouts\main.php (100)
+in C:\Programmering\xampp\htdocs\skeleton\protected\controllers\PostController.php (260)

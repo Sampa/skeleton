@@ -1,0 +1,109 @@
+/*
+	modals
+*/
+.smodalContent{}
+.bpopup {   
+	    color: #111;
+	    display: none;
+	    z-index: 1002;
+	    position:absolute;
+	    margin-left: 0px;
+	    margin-top:0px;
+	    min-width: 250px;
+		max-width: 99%;
+		background-color: #fff;
+	    border-radius: 10px 10px 10px 10px;
+		    padding: 25px 25px 0px 25px;
+	    box-shadow: 0 0 25px 5px #666;
+	}
+.draghandle{
+	position:absolute;
+	float:left;
+	height:22px;
+	padding:2px 0px 2px 0px; 
+	top:-1px; 
+	left:0px;  
+	cursor:crosshair;
+    border-radius: 10px 10px 0px 0px;
+   	min-width: 250px;
+	width:100%;
+	padding:2px 0px 2px 0px; 
+	margin-top: 1px;
+	border:0px;
+	background:#0088CC; color:#fff; background-image:linear-gradient(to bottom, #0088CC, #0044CC)
+}
+.draghandle span{
+	margin-left: 10px;;
+}
+.closeButtonTemplate{
+	display:none;
+}
+
+.loadIcon{
+	color:#000;font-size:2em;
+}
+.bTitle{
+	margin-left: 3px;
+}
+
+/*
+	this is the class for the close button in the top right corner of each modal, 
+	do not change this classname but feel free to change it's style
+*/
+.bButtons {
+	position: absolute;
+	float:right;
+	right: -4px;
+	top: 0px;
+	display: block;
+	margin-top:0px;
+}
+
+.draghandle i {
+	color:#fff;
+}
+.closeButtonTemplate{
+	display:none;
+}
+
+.loadIcon{
+	color:#000;font-size:2em;
+}
+
+/*obviously the hover class for the close buttons*/
+span.bClose:hover{
+
+}
+.b-iframe{
+	min-width: 90%;
+	height:600px;
+}
+
+/*
+
+*/
+
+/*  Base style of sTaskbar  */
+#sTaskbarWrapper{
+	position:fixed; 
+
+	top:42px;
+	left:00px;
+	background:#0088CC;
+	padding: 5px;
+}
+#sTaskbar{
+	position: relative;
+}
+
+#sTaskbar, #sTaskbar UL, #sTaskbar UL LI {
+	list-style: none;
+	margin: 0;
+	border-right: none;
+}
+#sTaskbar li a i{
+	color:#000;
+}
+.dropdown-menu li{
+	width: 100%;
+}
