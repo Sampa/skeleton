@@ -1,16 +1,18 @@
 /*
  the bpopmodal related functions
 */
-// set default settings, use this with selector.bPopup(modalDefaults());
+// set default settings, use this with selector.bPopup(bpopupDefaults());
 
   
   function sModal(options={}){        
+        $.sModal(options);
+        return;
+        var sSettings = sModalDefaults();
 
-        var sSettings = sModalSettings();
         getDefaultElement().html("");
         //if no custom settings sent along, use defaults
         /*bugfix to clear any changes*/
-        var bSettings =  modalDefaults(); 
+        var bSettings =  bpopupDefaults(); 
        if(options.settings){
             $.each(options.settings,function(key,value){
                 bSettings[key] = value;
@@ -22,7 +24,7 @@
         }else{
             element = options.element;        
         }
-        // insert design template
+        // serdesign template
         if(!options.templateHtml){
             options.templateHtml = $(".sTemplate").html();        
         }
@@ -36,8 +38,6 @@
                 element.wrapInner('<div class="smodalContent">');                
                 element.prepend(options.templateHtml);
                 insertedTemplate = true;
-                            console.log("hek");
-
             }else{
                 //insertedTemplate = true;
 
@@ -56,7 +56,6 @@
             element.children('.draghandle').children('span').html(options.title);
         }
                    
-       
        
         if(!element.hasClass('bpopup')){
             element.addClass('bpopup');
@@ -86,9 +85,11 @@
             element.draggable(options.draggableSettings);
         }
 
-        if(sSettings.resizeable){
-           if(typeof options.resizeable== "undefined" || options.resizable){
-                if(typeof options.resizeSettings == "undefined"){
+        
+           if(typeof options.resizeable== "undefined"){
+                options.resizeable = sSettings.resizeable;
+                if(options.resizeable)
+                    if(typeof options.resizeSettings == "undefined"){
                         options.resizeSettings = {
                             start:function(){
                                 element.children(".smodalContent").show();
@@ -98,7 +99,7 @@
 
                 resizeModals(element,options.resizeSettings);
           }
-        }
+        
         //return element with data
         $(".bunfold").hide();            
         return element.children(".smodalContent");
@@ -107,11 +108,9 @@
 
 
   
-
-function getDefaultElement(){
-            var sSettings = sModalSettings();
-            return $("#bpopup");//$("body").children($(sSettings.defaultElement));
-        }
+function getDefaultElement(){            
+         return $("#bpopup");
+    }
  
 
  /* JQUERY UI RELATED resizing AND draggable*/
@@ -146,6 +145,7 @@ function getDefaultElement(){
     function resizeModals(element=false,settings=false){
             var viewportWidth = $(window).width()-200,
             viewportHeight = $(window).height()-150;
+            var sSettings = sModalDefaults();
             if(!settings){
             var settings= {         
                 minHeight: sSettings.minimizeHeight,
@@ -186,7 +186,6 @@ function getDefaultElement(){
                 width:viewportWidth,  
                 height:viewportHeight,                      
                 left:0,
-                top:0,      
             }, 600, function() {
             // Animation complete.
             });
@@ -200,7 +199,7 @@ function getDefaultElement(){
 
     function minimizeModal(element){
         element.show();
-        var settings = sModalSettings();
+        var settings = sModalDefaults();
         element.animate({
                 height:settings.minimizeHeight,     
                 width:settings.minimizeWidth,                  
@@ -322,7 +321,10 @@ function bindButtons(){
      $("body").on('click','.bpin',function(){
         var modalElement = $(this).closest(".bpopup"), 
             id = modalElement.attr('id');
-            modalElement.hide();
+            $(modalElement).effect( "transfer", {to:"#sTaskbar",classname:"ui-effects-transfer"}, 500, function(){
+                modalElement.fadeOut("slow");
+            });
+
         //if not already in the taskbar add it there
             if(typeof $("#taskbar"+id).html() == "undefined"){
                 var title = modalElement.children('.draghandle').html(),
@@ -398,23 +400,25 @@ function bindButtons(){
         $("#sTaskbarStart ul").fadeOut();
     });
  
-
-
     $("body").on('click','#sTaskbarFold', function(){
         resizeTaskbar(30);     
     });
      $("body").on('click','#sTaskbarUnfold', function(){
         resizeTaskbar("100%");
     });
-      //if trying to open a modal
+
+
+     /* HANDLES HTML MARKUP MODALS */
     $("body").on('click',".bOpen",function(event){
         event.preventDefault();
         
         var title = $(this).next(".bTitle").html(); /* get title element */
         element = $("#"+$(this).attr('data-target')),/* get the div to popup */  
-        settings = modalDefaults(), /* get bPopup settings */       
+        settings = bpopupDefaults(); /* get bPopup settings */       
+       try{
+        var buttons = $(this).attr('data-buttons').split(','), 
         type = $(this).attr('rel'); 
-        
+        }catch(Err){}
         if(type=="image"){     
             settings.content = 'image';
             element = handleImage(element,$(this));
@@ -423,10 +427,20 @@ function bindButtons(){
                 'element':element,
                 'settings':settings,
                 'title':title,
-            }, 
-           contentElement = sModal(sOptions);
+            }
+
+            if(typeof buttons !=="undefined" ){
+                if(buttons !="")
+                    sOptions.buttons = buttons;
+            }      
+            if(typeof ignore !=="undefined"){
+                if(ignore !="")
+                    sOptions.ignore = ignore;
+            } 
+           contentElement = element.sModal(sOptions);
         }
     });
+
 
 }
 $(document).ready(function(){

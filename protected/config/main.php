@@ -7,6 +7,7 @@ Yii::setPathOfAlias('root', dirname(__FILE__).'/../../');
 Yii::setPathOfAlias('com', dirname(__FILE__).'/../components/');
 Yii::setPathOfAlias('uploads', dirname(__FILE__).'/../../uploads');
 Yii::setPathOfAlias('boot', dirname(__FILE__).'/../extensions/bootstrap');
+Yii::setPathOfAlias('smodal', dirname(__FILE__).'/../extensions/smodal');
 
 
 // This is the main Web application configuration. Any writable
@@ -33,6 +34,7 @@ return array(
 		'ext.CAdvancedArFindBehavior',
 		'application.modules.sdashboard.components.*',
 		'application.modules.sdashboard.models.*',
+		'ext.smenu.SMenu',
 	),
 
 	'defaultController'=>'site',
@@ -121,7 +123,9 @@ return array(
 				'login'=>'/site/login',
 				'sprism'=>'/site/page/view/sprism',
 				'smodal'=>'/site/page/view/smodal',
-				'scrud'=>'/post/admin',
+				'smenu'=>'/site/page/view/smenu',
+				'sgii'=>'/site/page/view/sgii',
+				'snippets'=>'/site/page/view/snippets',
         		'post/<id:\d+>/<title:.*?>'=>'/post/view',
         		'posts/<tag:.*?>'=>'/post/index',
         		'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

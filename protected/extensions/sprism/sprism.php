@@ -37,7 +37,7 @@ class Sprism extends CWidget
 			}
 		}		
 ?>
-	<pre style="width:95%; height:95%;" data-line="<?=$lineNumbers;?>"><code class="language-<?=$this->lang;?>"><?=$this->content;?></code></pre>
+	<pre style="width:95%; height:95%;" class="language-<?=$this->lang;?>" data-line="<?=$lineNumbers;?>"><code class="language-<?=$this->lang;?>"><?=$this->content;?></code></pre>
 <?php
 	}
 	public function registerClientScript()

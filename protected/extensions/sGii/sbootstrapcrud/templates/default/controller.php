@@ -42,7 +42,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','deleteMany'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -221,7 +221,15 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			   echo "false"; 	
 	    }	
 	}
-
+	public function actionDeleteMany(){
+	
+		if(Yii::app()->request->isPostRequest){
+			$models = explode(',', $_POST['models']);
+			foreach($models as $modelid){
+				$model = <?php echo $this->modelClass;?>::model()->findByPk($modelid)->delete();
+			}			
+		}	
+	}
 	/**
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated

@@ -118,8 +118,45 @@ function delete_record(id,modelClass,url)
 		]
 	);		
 }
+// making a grid selectable so you can do multi delete
+function makeSelectable(id){
+			$(".deleteSelected").fadeOut();
+			$( "#" +id+ " table tbody" ).selectable({
+				cancel: "a, button",
+				stop: function() {
+					var result = $(".select-result" ).empty();
+					var data ="";
+					$("#"+id+" table tbody tr td").each(function(){
+						var dataColor = $(this).attr('data-color');					
+						if(typeof dataColor =="string")
+							$(this).css('background-color',dataColor);
+					});
+					$( ".ui-selected", this ).each(function() {
+						var index = $( "#"+id+" table tbody tr" ).index( this );
+						var tr = $( "#"+id+" table tbody tr:eq("+index+")");
+						var td = tr.children("td");
+						td.attr('data-color', td.css('background-color'));
+						td.css('background-color','#DA4F49');
+						data = data + tr.children("td").children("a").attr('data-pk')+ ",";
+					});
+					result.append( data );
+					result.hide();
+					if(data !="")
+						$(".deleteSelected").fadeIn();
+					else
+						$(".deleteSelected").fadeOut();		
+				}			
+			});
+		}
 
 
+//delete the selected rows
+$("body").on('click',".deleteSelected",function(){
+	var grid = $(".grid-view").attr('id');
+	jQuery.post('/post/deleteMany', {models: $(".select-result").html()}, function(data, textStatus, xhr) {
+		$.fn.yiiGridView.update(grid, {	});	
+	});
+});
 // toggle the  search form
 $('body').on('click','.toggleSearch', function(){
 	$(".admin-form").slideUp('slow');

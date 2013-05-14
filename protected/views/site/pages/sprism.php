@@ -1,9 +1,8 @@
-<div class="well span8"  style="min-height:480px;">
+<div class="span8"  style="min-height:480px;">
 	<h3> sPrism </h3>
 	<p>
 		Provides a simple way to use <a href="http://prismjs.com/">Prism</a> as a yii widget.
 		<br/>Please use the link above for details	<br/>
-		<a href="https://github.com/Sampa/sprism">Github repositry</a>	 
 	</p>
 
 	<h5>Features</h5>
@@ -28,8 +27,9 @@
 		<h5>Highlight a range of rows</h5>
 		If each is false it will only highlight odd lines(1,3,5 and so on) within the start/end range.
 		<?php
-			$code ="\$this->widget('ext.sprism.sprism',array('content'=>\$code,'lines'=>array('start'=>1,'end'=>14,'each'=>true)));";
-			$this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>array('start'=>1,'end'=>14)));
+			$code ="\$this->widget('ext.sprism.sprism',
+				array('content'=>\$code,'lines'=>array('start'=>1,'end'=>5,'each'=>true)));";
+			$this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>array('start'=>1,'end'=>5,'each'=>true)));
 		?>
 		<h5>Optional highlighting thrue prism value</h5>		
     	<h6>Lines 1 through 2, line 5, lines 9 through 12</h6>

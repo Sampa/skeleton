@@ -9,7 +9,12 @@
  *==================================================================================================================*/
 ;(function($) {
     $.fn.bPopup = function(options, callback) {
-        
+   
+    if(typeof this =="function()")
+    	var $popup = $("#bpopup");
+    else
+    	var $popup = this;
+
     if ($.isFunction(options)) {
             callback 		= options;
             options 		= null;
@@ -23,8 +28,7 @@
             $('html').css('overflow', 'hidden');
         
 		// VARIABLES	
-        var $popup 			= this
-        	, d 			= $(document)
+          var d 			= $(document)
         	, w 			= $(window)
         	, prefix		= '__b-popup'
 			, isIOS6X		= (/OS 6(_\d)+/i).test(navigator.userAgent) // Used for a temporary fix for ios6 timer bug when using zoom/scroll 
@@ -280,7 +284,9 @@
 			return window.innerWidth || w.width();
 		}
     };
-
+$.extend({
+    		bPopup: $.fn.bPopup
+		});
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// DEFAULT VALUES
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -312,4 +318,5 @@
 		, transition:		'fadeIn' //transitions: fadeIn, slideDown, slideIn
         , zIndex: 			9997 // popup gets z-index 9999, modal overlay 9998
     };
+
 })(jQuery);

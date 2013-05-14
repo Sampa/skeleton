@@ -42,7 +42,7 @@
 			  	echo $form->checkbox($model, 'rememberMe',array("rel"=>"tooltip","title"=>Yii::t('skeleton','Remember me')));
 			   	echo "<br/><br/>";
 				echo CHtml::submitButton(Yii::t('skeleton','Login'),array('class'=>'btn')); 
-				echo CHtml::link('Not yet a user?','',array('id'=>'registerButton','class'=>'btn btn-small'));
+			//	echo CHtml::link('Not yet a user?','',array('id'=>'registerButton','class'=>'btn btn-small'));
 
 				$this->widget('TbPopVal', array(
 					'attribute' => "summary", //requiered, the attribute of the form field 
@@ -56,7 +56,4 @@
 				));		
 			?>				 
 		
-		<?php  
-    	$this->endWidget();
-
-?>
+		<?php $this->endWidget();?>

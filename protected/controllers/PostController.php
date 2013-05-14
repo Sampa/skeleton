@@ -34,7 +34,7 @@ class PostController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','deleteMany'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -215,6 +215,15 @@ class PostController extends Controller
 	    }	
 	}
 
+	public function actionDeleteMany(){
+	
+		if(Yii::app()->request->isPostRequest){
+			$models = explode(',', $_POST['models']);
+			foreach($models as $modelid){
+					$model = Post::model()->findByPk($modelid)->delete();
+			}			
+		}	
+	}
 	/**
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated

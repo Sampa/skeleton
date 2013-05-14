@@ -1,6 +1,5 @@
 $("body").on('click','#loginButton',function(){
-		sModal({
-			element:$("#login"),
+		$("#login").sModal({			
 			buttons:["bpin","bclose"],
 			resizeable:false,
 			title:"Login",
@@ -23,21 +22,13 @@ $(document).ready(function(){
 	$("body").on('click','#aboutUs',function(e){
 		$.isLoading( { 'position': "overlay"});
 		jQuery.get('/site/ajaxAbout', {}, function(data) {
-			sModal({
-				element:$("#aboutUsDiv"),
+			$("#aboutUsDiv").sModal({				
 				data:data,
 				settings:{transition:"slideIn"}
 			});		 
 		$.isLoading("hide");
 		});		
 	});
-	/*
-
-	Contact and about us in the left menu
-
-	 */
-
-
 
 	/* 
 	contact form 
@@ -175,7 +166,7 @@ diffrent functions
         foldModal(modal);
         unfoldModal(modal);
         minimizeModal(modal);
-        maximizeModal(modal,10,20);
+        maximizeModal(modal,50,50);
  });
 
 //handles the submmitting of the contactform

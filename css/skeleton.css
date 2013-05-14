@@ -7,6 +7,9 @@
 	This is the list item in the first dropdown around level 2
 	multilevel dropdown css for placec outside navbars/buttons or breadcrumbs
 */
+ul.subWrapper{
+	list-style: none;
+}
 .subdropSet{
 	position:relative;
 	top:0px; 
@@ -63,7 +66,7 @@
 /*
 	The link itself inside the parent  .subdrop li container 
 */
-.subdrop a, {
+.subdrop a {
 	top:-5px;
 	width:83%;
 	left:0px;

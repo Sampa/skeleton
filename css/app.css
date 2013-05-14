@@ -1,3 +1,6 @@
+.extDescription{
+	margin-left:170px;
+}
 .functions{
 		position: fixed;
 		width:150px;
@@ -9,7 +12,7 @@
 
 #leftMenu{
 	position:fixed; 
-	top:10%;
+	top:30%;
 	left:-7px;
 	font-family: verdana;
 	width:4pt;
@@ -29,13 +32,13 @@
     left:-2px;
 }
 #aboutUs {
-	top:12px;
+    position: relative;
     font-size:2em;
     left:-2px;
 
 }
 #loginButton {
-	top:-11px;
+	position: relative;
     font-size:2em;
 }
 
@@ -89,3 +92,5 @@ max-width:90%;
 	margin-left: 5.2em;
 	z-index: 50;
 }
+
+/* Menu */

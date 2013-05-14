@@ -3,9 +3,10 @@
 <div  id="navparent">
     <ul  class="nav nav-list functions" data-spy="affix">
         <li><a href="#top">Introduction</a></li>
-        <li><a href="#htmlMarkup">Basic modal thrue html</a></li>
-        <li><a href="#jsMarkup">Thrue javascript</a></li> 
-        <li><a href="#examples">Examples</li>
+        <li><a href="#htmlMarkup">Thrue html</a></li>
+        <li><a href="#jsMarkup">More advanced hrue javascript</a></li> 
+        <li><a href="#widgetMarkup">Thrue widget</a></li> 
+        <li><a href="#examples">Examples</a></li>
         <li><a href="#images">Images</a></li>
        	<li><a href="#maxModal">maximizeModal()</a></li>
 	   	<li><a href="#minModal">minimizeModal()</a></li>
@@ -18,13 +19,12 @@
 </div>
 
 
-<div class="well span8" id="top" style="margin-left:170px;">
+<div class="span8 extDescription" id="top" style="">
 	<h3> sModal </h3>
 	<p>
 		Modal madness based on  <a href="http://dinbror.dk/blog/bPopup/">bPopup</a><br/>
 		Please use the link above for details on the basic usage.<br/>
 		Designed to make it easy to use modals  in any project and with many purposes without much work or repeated code writing<br/>
-		<a href="https://github.com/Sampa/sModal">Github repositry</a> 
 	</p>
 	<p>		
 		<h4> The way sModal works</h4>
@@ -67,29 +67,61 @@
 		To take full advantage of sModal take time to customize css, structure templates and take a look at the different special 
 		<a href="#jsfunctions">javascript functions</a>
 		<h5> Widget options</h5>
-		<ul>
-			<li>
-				<em>String</em> <b>commonClass</b> - class(es) to give the action buttons<br/>
-				Default: "btn btn-small"
-			</li>
-			<li>
-				<em>Array</em> <b>buttons</b> - action buttons to show in the modal. <br/>
-				Any 'icon' value will result in a &lt;i&gt; element with the value as class attribute<br/>
-				You can also specify html attribute instead of icon if you wish<br/>
-			</li>
-			<li> 
-				<em>Boolean</em> <b>taskbar</b> - should the taskbar with pinned modals be rendered? 
-				Default:false
-			</li>
-			<li>
-				<em>String</em> <b>headerText</b> - what to use as modal title when no title is passed to smodal()<br/>
-				Defaults to &lt;i class="icon-fullscreen">&lt;/i> 
-			</li>
-			<li> <em>Boolean</em> <b>draggable</b> - should the modals be draggable by default? </li>
-			<li> <em>Boolean</em> <b>resizeable</b> - should the modals be resizeable by default? </li>
-			<li><em>Array</em> <b>options</b> - bPopup settings that you want to use as defaults
-		</ul>
-		<h6>Example:</h6>
+		<?php 
+			$gridDataProvider = new CArrayDataProvider(array(
+			    array(
+			    	'id'=>1,
+			    	'datatype'=>'String',
+			    	'name'=>'commonClass',
+			    	'description'=>'class(es) to give the action buttons','default'=>"btn btn-small"
+			    ),			    
+				array(
+					'id'=>2,
+					'datatype'=>'Array',
+					'name'=>'buttons',
+					'description'=>'Array in format of className=>array(icon,class,html,inTaskbar,default) 
+					A list of action buttons to be available in modals. 
+
+					"inTaskbar" is a boolean if the button will be shown while 
+						the modal is in the taskbar.
+
+						"Default"  is a boolean ,if true the button will always be shown in all modals
+						 unless specified as false in a specific modal. 
+						Any "icon" value will result in a &lt;i&gt; element with the value as class attribute
+						You can also specify the "html" attribute instead of icon if you wish
+					',
+					'default'=>'name=>(false,false,false,true,true)'
+				),
+				array(
+					'id'=>3,
+					'datatype'=>'Boolean',
+					'name'=>'taskbar',
+					'description'=>'should the taskbar with pinned modals be rendered?', 
+					'default'=>'false'
+				),
+				array('id'=>4,'datatype'=>'String','name'=>'headerText','description'=>'what to use as modal title when no title is passed to smodal()
+				','default'=>'<i class="icon-fullscreen"></i>' 
+				),
+				array('id'=>5,'datatype'=>'Boolean','name'=>'draggable','description'=>'should the modals be draggable by default? ','default'=>'true'),
+				array('id'=>6,'datatype'=>'Boolean','name'=>'resizeable','description'=>'should the modals be resizeable by default? ','default'=>'true'),
+				array('id'=>7,'datatype'=>'Array','name'=>'options','description'=>'bPopup settings that you want to use as defaults','default'=>''),
+
+			));
+
+			$this->widget('bootstrap.widgets.TbGridView', array(
+			    'type'=>'striped bordered condensed',
+			    'dataProvider'=>$gridDataProvider,
+			    'template'=>"{items}",
+			    'columns'=>array(
+			        array('name'=>'datatype', 'header'=>'Datatype'),
+			        array('name'=>'name', 'header'=>'Name'),
+			        array('name'=>'description','header'=>'Description'),
+			        array('name'=>'default', 'header'=>'Default'),
+			    ),
+			)); 
+		?>
+
+
 		<?php 
 		$code = "\$this->widget('ext.bpopup.bpopup', array(
 			'commonClass'=>'btn btn-small',
@@ -123,22 +155,21 @@
 			),
 			'options'=>array( //unless you set an option it get its default value as shown below
 				//you can also set these directly in bpopup.php
-	            'follow'=>array(false,true),   //Should the popup follow the screen vertical and/or horizontal on scroll/resize? [horizontal, vertical, fixed on screen see positionStyle instead)] Version 0.3.6. Changed in version 0.5.0 and again in version 0.6.0 and again in version 0.7.0.
-			 	'content' =>'ajax',//image ,iframe
+	            'follow'=>array(false,true),   
+			 	'content' =>'ajax',
 	            'positionStyle' => 'absolute', //'fixed' or 'absolute'
 	            'easing' => 'easeInOutExpo', //uses jQuery easing plugin
-	            'transition' => 'fadeIn', //The transition of the popup when it opens. Types' => ['fadeIn', 'slideDown', 'slideIn']. Version 0.9.0
-	            'followEasing' =>'swing', //   The follow easing of the popup. uses Easing plugin. Version 0.9.0
-	            'followSpeed' => 500, //  Animation speed for the popup on scroll/resize. Version 0.3.6
-	            'loadData' => false, //    LoadData is representing the data attribute in the jQuery.load, // method. It gives you the opportunity to submit GET or POST values through the ajax request. Version 0.9.0
-	            'loadUrl' => false, //     External page or selection to load in popup. See loadCallback for callback. Version 0.3.4
-	            'modal' => false, //   Should there be a modal overlay behind the popup?
-	            'modalClose' => true, //   Should the popup close on click on overlay? Version 0.4.0
-	            'modalColor' => '#eee', //     What color should the overlay be? Version 0.3.5
-	            'opacity' => 0.9, //   Transparency, from 0.1 to 1.0 filled, //. Version 0.3.3
-	            'positionStyle' => 'absolute', //  The popup's position. 'absolute' or 'fixed'  Version 0.7.0
-	            'scrollBar' => true, //    Should scrollbar be visible?
-	            'speed' => 650, //     Animation speed on open/close. Version 0.9.0
+	            'transition' => 'fadeIn', // Types' => ['fadeIn', 'slideDown', 'slideIn']
+	            'followEasing' =>'swing',
+	            'followSpeed' => 500, 
+	            'loadData' => false, //LoadData is representing the data attribute in the jQuery.load, 
+	            'loadUrl' => false, 
+	            'modal' => false, //Should there be a modal overlay behind the popup?
+	            'modalClose' => true, //Should the popup close on click on overlay? Version 0.4.0
+	            'modalColor' => '#eee', 
+	            'opacity' => 0.9,
+	            'scrollBar' => true, 
+	            'speed' => 650, 	           
 	            'zIndex' =>9999,
 	            'loadCallback'=>'$('.loadIcon').remove();', //callback example usage
 	            'onOpen'=>'', //callback 
@@ -147,17 +178,19 @@
 	            'closeClass'=>'bclose', 
 	            'position'=>array('auto',10),       
 			)
-		));";
-
-		$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>55)));
+		));";		
 	?>
-    
+		<button class="bOpen btn btn-success" data-target="widgetExample">Example</button>
+		<div id="widgetExample">
+			<?php $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>55)));?>
+		</div>
 	<h3>Usage</h3>
 	
 <!-- HTML MARKUP-->
 	<div id="htmlMarkup">
 	<h4> Thrue html </h4>
 		No javascript is needed for this
+		<!-- minimal markup-->
 		<h5> With minimal html markup</h5>
 		<button class="bOpen btn btn-success" data-target="foo">Example</button>
 		<div id="foo">Content</div>
@@ -166,15 +199,59 @@ $code = '&lt;button class="bOpen btn" data-target="foo">FooModal&lt;/button>
 &lt;div id="foo">Content&lt;/div>';
 			$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>3)));
 		?>
+		<!-- Custom title-->
 		<h5> With  custom title</h5>
-
 		<?php
 $code = '&lt;button class="bOpen btn" data-target="foo">FooModal&lt;/button>
 &lt;span class="bTitle"> &lt;i class="icon-screenshot">&lt;/i> FooTitle&lt;/span>
 &lt;div id="foo">Content&lt;/div> ';
 			$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>3)));
-		?>		
-	
+		?>
+		<!-- ignoring buttons-->
+		<h5> Ignoring buttons for this modal (but use the rest)</h5>
+		<?php
+$code = '&lt;button class="bOpen btn" data-target="foo" data-ignore="bmax,bmin">FooModal&lt;/button>
+&lt;span class="bTitle"> &lt;i class="icon-screenshot">&lt;/i> FooTitle&lt;/span>
+&lt;div id="foo">Content&lt;/div> ';
+			$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>3)));
+		?>
+		<!-- use buttons -->
+		<h5>Use only the specified buttons</h5>
+
+		<?php
+$code = '&lt;button class="bOpen btn" data-target="foo" data-buttons="bclose,bfold">FooModal&lt;/button>
+&lt;span class="bTitle"> &lt;i class="icon-screenshot">&lt;/i> FooTitle&lt;/span>
+&lt;div id="foo">Content&lt;/div> ';
+			$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>3)));
+		?>
+
+	</div>
+<!-- WIDGET MARKUP -->
+	<div id="widgetMarkup">
+		<h4> Widget </h4>
+		<?php
+		$this->widget('ext.smodal.widgets.modal', array(
+				'title'=> "My modal",
+				'content'=>"Modal content",
+				//'draggable'=>true, 
+				//'draggableSettings'=>array(),
+				//'resizeable'=>true,
+				//'resizeableSettings'=>array(),
+				'modalID'=> "myModal",
+				'triggerSelector'=>"#myModalTrigger",
+				//'triggerEvent '=> "click", 
+				//'buttons '=>"bmax,bfold,bpin",  
+				//'ignore '=>"bspin,bmin", 
+				//'templateHtml '=>"",
+				//'boptions '=> array(  ),
+			 ));
+		?>
+		<button id="myModalTrigger" class="btn">Open</button>
+		<?php
+$code = '';
+			$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'php','lines'=>array('start'=>1,'end'=>3)));
+		?>	
+	</div>
 
 <!-- JAVASCRIPT >-->
 	<div id="jsMarkup">
@@ -194,32 +271,30 @@ $code = '&lt;button class="bOpen btn" data-target="foo">FooModal&lt;/button>
 			<li>Data - the content to put inside the modal.</li>
 			<li>Html template - how to render the modal </li> 
 			<li>Title - will be displayed in the draghandle </li>
-			<li>Settings - {option:value} pairs or it will use modalDefaults() ( maps against bPopup settings)</li>
+			<li>Settings - {option:value} pairs or it will use bpopupDefaults() ( maps against bPopup settings)</li>
 			<li>Buttons - classnames from the widget array to be used for this modal,hides the rest </li>
 			<li>Ignore - Hides any class in this array, ['classname','classname2'] format </li>
 			<li>Draggable - boolean, should the modal be draggable?
-			<li>DraggableOptions - {option:value} pairs (maps against jquery-ui draggable options)</li>
+			<li>DraggableSettings - {option:value} pairs (maps against jquery-ui draggable options)</li>
 			<li>Resizeable - boolean, should the modal be resizeable?</li>
-			<li>ResizeableOptions -{option:value} pairs (maps against jquery-ui resizeable options)</li>			
+			<li>ResizeableSettings -{option:value} pairs (maps against jquery-ui resizeable options)</li>			
 		</ul> 
 	<h5> An example </h5>	
 		<?php		
-$code = "smodal{
-	element:$('#bpopup'),
-	data:$('#bpopup').html(),
+$code = "$('#bpopup').sModal({
 	title:'Draghandle', 
 	htmlTemplate:'.sTemplate', 
 	ignore:['bspin'],
 	settings:{transition: 'slideDown'},
 	draggable:true,
-	draggableOptions:{snapMode:'inner'},
+	draggableSettings:{snapMode:'inner'},
 	resizeable:true,
-	resizeableOptions:{
+	resizeableSettings:{
 	    start:function(){
             element.children('.smodalContent').show();
         },
     },
-}";
+})";
 			
 			$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>array('start'=>1,'end'=>13)));
 		?>
@@ -248,8 +323,7 @@ $code = '&lt;button class="btn btn-success ignoreButtons">Demo ignore&lt;/button
 &lt;/div>
 &lt;script>
 	$("body").on("click",".ignoreButtons",function(){
-		sModal({
-			element:$("#ignoreButtons"),
+		$("#ignorebuttons").sModal({
 			ignore:["bpin","bmax"],
 		});
 	});
@@ -265,8 +339,7 @@ $code = '$("body").on("click","#aboutUs",function(){
 		$("#aboutUsDiv").css("display","block");
 		$.isLoading( {"position": "overlay"});
 		jQuery.get("/site/ajaxAbout", {}, function(data) {
-			sModal({
-				element:$("#aboutUsDiv"),
+			$("#aboutUsDiv").sModal({
 				data:data,
 				settings:{transition:"slideIn"}
 			});		 
@@ -276,25 +349,9 @@ $code = '$("body").on("click","#aboutUs",function(){
 ';
 $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>array('start'=>1,'end'=>14)));
 ?>
-	<h6>Modal with advanced ajax request</h6>
-	<button class="btn btn-success ajaxExample">Demo</button>
-	My actual code for the contact button on the left of my page.<br/> 
-	<script>
-		$("body").on('click','.ajaxExample',function(){
-			var settings = modalDefaults();
-			settings.transition= "slideIn";
-			handleContactForm();
-		});
-	</script>
-<?php
-$code = '//contactus the left menu button
-$("body").on("click",".ajaxExample",function(e){
-	e.preventDefault();
-	var settings = modalDefaults();
-	settings.transition= "slideIn";
-	handleContactForm();//request render reset
-});
-
+	<h6>Forms</h6>
+	<?php
+$code = '
 function handleContactForm(){
     var formFields=$("#contact-form").serialize();
     $.ajax({
@@ -308,7 +365,7 @@ function handleContactForm(){
                       getModalElement().bPopup().close();
                       $("#contact-form").empty();
                 }else{
-                    sModal({
+                    $.sModal({
                         data:data.content,
                     });
                 }
@@ -327,21 +384,22 @@ $("#contactForm").submit(function(event){
 $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>array('start'=>1,'end'=>32)));
 ?>
 </div>
+
 <!-- images -->
 	<div id="images">
 		<h4 id="images">Images</h4>
 		Even though  sModal is no gallery viewer and more meant to be used to display pages or ajax content there is some image support.<br/>
 		The html markup for displaying images is simply:
 <?php
-$code ='&lt;img  src="/uploads/256076e2c265c8190bb498e3ed500ae6/who-said-it-was-hard-to-explain.jpg" rel="image" class="bOpen" alt="who-said-it-was-hard-to-explain.jpg"/>';
-$code .= '&lt;a href="/uploads/256076e2c265c8190bb498e3ed500ae6/who-said-it-was-hard-to-explain.jpg" rel="image" class="bOpen">who-said-it-was-hard-to-explain.jpg&lt;/a>';
+$code ='&lt;img  src="/path/to/image" rel="image" class="bOpen" alt="Here is an image"/>
+&lt;a href="/path/to/image" rel="image" class="bOpen">who-said-it-was-hard-to-explain.jpg&lt;/a>';
 $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'markup','lines'=>array('start'=>1,'end'=>3)));
 ?>
 
 		<h6>With img tag, use "rel and src" attributes</h6>
 		<img  width="150px" height="50px" src="/uploads/256076e2c265c8190bb498e3ed500ae6/who-said-it-was-hard-to-explain.jpg" rel="image" class="bOpen" alt="who-said-it-was-hard-to-explain.jpg"/>
 		
-		<h6>With other element use "rel and href" attributes</h6>:
+		<h6>With other element use "rel and href" attributes</h6>
 		<a href="/uploads/256076e2c265c8190bb498e3ed500ae6/who-said-it-was-hard-to-explain.jpg" rel="image" class="bOpen">who-said-it-was-hard-to-explain.jpg</a>
 
 	</div>
@@ -357,7 +415,7 @@ $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'markup','lines
 			Uses animations that you can change if you wish.
 
 			<?php
-				$code = "function maximizeModal($(\"#bpopup\"),50,100)";
+				$code = "maximizeModal($(\"#bpopup\"),50,100)";
 				$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>'1'));
 			?>		
 	</div>
@@ -367,7 +425,7 @@ $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'markup','lines
 			Minimizes the modal to minimizeWidth and minimizeHeight from sSettings();
 		 	Uses animations that you can change if you wish.
 			<?php
-				$code = "function minmizeModal($(\"#bpopup\"))";
+				$code = "minmizeModal($(\"#bpopup\"))";
 				$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>'1'));
 			?>
 	</div>
@@ -376,7 +434,7 @@ $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'markup','lines
 		<h5> foldModal(obj element)</h5>
 			 Uses one animation that you can change if you wish.
 			<?php
-				$code = "function foldModal($(\"#bpopup\"))";
+				$code = "foldModal($(\"#bpopup\"))";
 				$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>'1'));
 			?>
 	</div>
@@ -385,7 +443,7 @@ $this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'markup','lines
 		<h5> unfoldModal(obj element)</h5>
 			 Uses one animation that you can change if you wish.
 			<?php
-				$code = "function unfoldModal($(\"#bpopup\"))";
+				$code = "unfoldModal($(\"#bpopup\"))";
 				$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript','lines'=>'1'));
 			?>
 	</div>
@@ -431,9 +489,16 @@ $code = "'buttons'=>array(
 $this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>'1'));
 ?>
 		and then create a trigger to handle live elements and call the function <br/>
-			<button class="bOpen btn btn-success" data-target="customAction">Demo</button>
+		<button id="blinkDemo" class="btn btn-success">Demo</button>
 		<div id="customAction">notice  the "B" button</div>
-
+		<script>
+			$("#blinkDemo").on('click',function(){
+				sModal({
+					element:$("#customAction"),
+					buttons:["sblink","bclose"],
+				});
+			});
+		</script>
 <?php
 $code = "$(\"body\").on('click','.sblink',function(){
 	var modal = getModalFromButton($(\"this\"));
@@ -442,7 +507,7 @@ $code = "$(\"body\").on('click','.sblink',function(){
 	minimizeModal(modal);
 	maximizeModal(modal);
 });";
-$this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>'1'));
+$this->widget('ext.sprism.sprism',array('content'=>$code,'lang'=>'javascript', 'lines'=>'1'));
 
 ?>
 	</div>
@@ -451,57 +516,5 @@ $this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>'1'));
 <!--
   
     
-    /*
-        Accepts: a modal element and the height to restore to
-        Puts the modal in unfolded mode
-    */ 
-    function unfoldModal(element,height){
-        //make sure modal is seen
-        element.show();
-        //make sure content is shown
-        element.children(".smodalContent").slideDown();
-        //The animation    
-        element.animate({
-                height:height,        
-            }, 600, function() {
-            // Animation complete.
-        });
-    }
-
-function sModal(options){
-        //if no custom settings sent along, use defaults
-        if(options.settings==null){
-            options.settings = modalDefaults();
-        }
-        if(!options.element){
-            element = getModalElement();
-        }else{element = options.element;}
-        //if there is no data sent,back up and use the divs current content 
-        if(!options.data){
-            data = element.html(); 
-        }
-
-        // insert design template
-        var templateHtml = $(".sTemplate").html();        
-        element.html(templateHtml);
-        if(options.title){
-            element.children('.draghandle').html(options.title);
-        }
-
-        $(element).children(".smodalContent").html(data);              
-       
-        if(!element.hasClass('bpopup')){
-            element.addClass('bpopup');
-        }                
-        //show modal                
-        element.bPopup(options.settings);
-        element.draggable();
-        if(!options.resizeSettings){
-            options.resizeSettings = {}
-        }
-        resizeModals(element,options.resizeSettings);
-       
-        //return element with data
-        return element.children(".smodalContent");
-}-->
+  
 	

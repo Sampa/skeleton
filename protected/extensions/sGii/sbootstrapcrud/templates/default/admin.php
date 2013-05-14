@@ -52,7 +52,9 @@ echo "\$this->breadcrumbs=array(
 		<button class="btn closeViewContent"> <i class="icon-chevron-up"></i> Close</button>
 		<div class="view-content"></div>
 	</div>
-
+<!-- multi delete -->	
+<button class="deleteSelected btn btn-danger hide"><i class="icon-trashbin">Delete selected</button>
+<div class="select-result hide"div>
 <?php echo "<?php"; ?>
  $this->widget('TbGridView',array(
 	'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
@@ -95,3 +97,9 @@ echo "\$this->breadcrumbs=array(
 
 		),
 	)); ?>
+<script>	
+	$(function() {
+		var grid = $(".grid-view").attr('id');
+		makeSelectable(grid);		
+	});
+</script>
