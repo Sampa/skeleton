@@ -176,34 +176,7 @@ class PostController extends CController
 	    $es = new EditableSaver('Post'); 
 	    $es->update();
     }
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
-	public function actionDelete()
-	{
-	   
-		if(Yii::app()->request->isPostRequest)
-		{
-		    $id=$_POST["id"];
 
-			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
-
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset(Yii::app()->request->isAjaxRequest))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
-			else
-			   echo "true";
-		}
-		else{
-		    if(!isset($_GET['ajax']))
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-		    else
-			   echo "false"; 	
-	    }	
-	}
 	
 	public function actiondeleteAttachment()
     {

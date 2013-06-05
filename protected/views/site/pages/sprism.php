@@ -29,12 +29,25 @@
 		<?php
 			$code ="\$this->widget('ext.sprism.sprism',
 				array('content'=>\$code,'lines'=>array('start'=>1,'end'=>5,'each'=>true)));";
-			$this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>array('start'=>1,'end'=>5,'each'=>true)));
+			$this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>array('start'=>1,'end'=>2,'each'=>true)));
 		?>
 		<h5>Optional highlighting thrue prism value</h5>		
     	<h6>Lines 1 through 2, line 5, lines 9 through 12</h6>
 		<?php
-			$code ="\$this->widget('ext.sprism.sprism',array('content'=>\$code,'lines'=>'1-2, 5, 9-12'));";
+			$code ="\$this->widget('ext.sprism.sprism',array('content'=>\$code,'lines'=>'1-2, 5, 9-12'));
+			/*
+				Foo
+				Foo
+				Foo
+				Foo
+				Foo
+				Foo
+				Foo
+				Foo
+				Foo
+				Foo
+			*/
+			";
 			$this->widget('ext.sprism.sprism',array('content'=>$code,'lines'=>'1-2, 5, 9-12'));
 		?>
 

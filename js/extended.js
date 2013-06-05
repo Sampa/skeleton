@@ -3,116 +3,9 @@
 */
 // set default settings, use this with selector.bPopup(bpopupDefaults());
 
-  
-  function sModal(options={}){        
-        $.sModal(options);
-        return;
-        var sSettings = sModalDefaults();
-
-        getDefaultElement().html("");
-        //if no custom settings sent along, use defaults
-        /*bugfix to clear any changes*/
-        var bSettings =  bpopupDefaults(); 
-       if(options.settings){
-            $.each(options.settings,function(key,value){
-                bSettings[key] = value;
-            });
-        }
-        //if there is no special element to popup use the default div
-        if(typeof options.element =="undefined"){
-            element = getDefaultElement();
-        }else{
-            element = options.element;        
-        }
-        // serdesign template
-        if(!options.templateHtml){
-            options.templateHtml = $(".sTemplate").html();        
-        }
-
-        //if there is no data sent,back up and use the divs current content 
-        //to preserve ajax features in basic modals we need a fix control variable
-        var insertedTemplate = false; 
-        if(!options.data){
-           options.data = element.children('.smodalContent').html();             
-            if(typeof options.data == "undefined"){
-                element.wrapInner('<div class="smodalContent">');                
-                element.prepend(options.templateHtml);
-                insertedTemplate = true;
-            }else{
-                //insertedTemplate = true;
-
-            }
-        }
-
-        if(!insertedTemplate){
-            element.html(options.templateHtml);
-            //insert correct data
-            element.append('<div class="smodalContent">'+options.data+'</div>');  
-       
-        }
-
-        //title;
-        if(options.title){
-            element.children('.draghandle').children('span').html(options.title);
-        }
-                   
-       
-        if(!element.hasClass('bpopup')){
-            element.addClass('bpopup');
-        }                
-        //show modal                
-        element.bPopup(bSettings);
-        //ignore
-        if($.isArray(options.ignore)){
-            $(options.ignore).each(function(index,value){
-                element.children(".bButtons").children("."+value).hide();                
-            });
-        }
-        //buttons
-        if($.isArray(options.buttons)){
-            element.children(".bButtons").children().hide();                
-            $(options.buttons).each(function(index,value){
-                element.children(".bButtons").children("."+value).show();                
-            });
-        }
-        if(typeof options.draggable == "undefined"){
-            options.draggable = sSettings.draggable;            
-        }
-        if(options.draggable){
-            if(typeof options.draggableSettings =="undefined"){
-                options.draggableSettings ={};
-            }
-            element.draggable(options.draggableSettings);
-        }
-
-        
-           if(typeof options.resizeable== "undefined"){
-                options.resizeable = sSettings.resizeable;
-                if(options.resizeable)
-                    if(typeof options.resizeSettings == "undefined"){
-                        options.resizeSettings = {
-                            start:function(){
-                                element.children(".smodalContent").show();
-                            },
-                        };
-                    }
-
-                resizeModals(element,options.resizeSettings);
-          }
-        
-        //return element with data
-        $(".bunfold").hide();            
-        return element.children(".smodalContent");
-}
-
 
 
   
-function getDefaultElement(){            
-         return $("#bpopup");
-    }
- 
-
  /* JQUERY UI RELATED resizing AND draggable*/
    $(window).resize(function(e) {
         if (!$(e.target).hasClass('ui-resizable')) {
@@ -141,6 +34,14 @@ function getDefaultElement(){
                 });
            } 
         });
+
+    function getDefaultElement(){            
+        return $("#bpopup");
+    }
+    function closeModal(obj){
+        obj.closest('.bpopup').bPopup().close();
+    }
+
 
     function resizeModals(element=false,settings=false){
             var viewportWidth = $(window).width()-200,
@@ -309,7 +210,6 @@ function resizeTaskbar(width,height=false){
         if(!height){
             height = $("#sTaskbarWrapper").height();
         }
-        $("#sTaskbarStart ul").fadeOut();
         $("#sTaskbarWrapper").animate({
             width:width,
             height:height,
@@ -317,24 +217,57 @@ function resizeTaskbar(width,height=false){
           
         });
 }
+Storage.prototype.setObject = function(key, value) {
+    this.setItem(key, JSON.stringify(value));
+}
+
+Storage.prototype.getObject = function(key) {
+    var value;
+    try{
+        value = JSON.parse(this.getItem(key));
+    }catch(err){
+    }
+    
+    return value;
+}
+function addTaskbarItem(id,title){
+    template= $(".sTaskbarTemplate").clone();
+    template.attr('class','sTaskbarItem');
+    template.attr('id',"taskbar"+id);
+    template.children('a').attr('href',"#taskbar"+id).prepend(title);
+    $("#sTaskbar").append(template);
+}
 function bindButtons(){
      $("body").on('click','.bpin',function(){
         var modalElement = $(this).closest(".bpopup"), 
-            id = modalElement.attr('id');
+            id = modalElement.attr('id'),
+            html = modalElement.prev(".b-modal").html();
+                modalElement.prev(".b-modal").hide();
             $(modalElement).effect( "transfer", {to:"#sTaskbar",classname:"ui-effects-transfer"}, 500, function(){
-                modalElement.fadeOut("slow");
+                modalElement.fadeOut();
             });
 
         //if not already in the taskbar add it there
             if(typeof $("#taskbar"+id).html() == "undefined"){
-                var title = modalElement.children('.draghandle').html(),
-                template= $(".sTaskbarTemplate").clone();
-                template.attr('class','sTaskbarItem');
-                template.attr('id',"taskbar"+id);
-                template.children('a').attr('href',"#taskbar"+id).prepend(title);
-                $("#sTaskbar").append(template);
-            }
+                var title = modalElement.children('.draghandle').html();
+               addTaskbarItem(id,title);
 
+                var taskbar = $.parseJSON(localStorage.taskbar);
+                var  taskbar = { 
+                    3:{ 
+                        id:id,
+                        title:title,
+                        html: modalElement.html(),
+                    }
+                };
+            }
+            
+           // var taskbar = localStorage.getObject('taskbar'); 
+
+            if(typeof taskbar =="undefined"){
+                 
+            }
+            localStorage.taskbar=JSON.stringify(taskbar);
     });
 
    
@@ -381,14 +314,13 @@ function bindButtons(){
     $("body").on('click','.sTaskbarItem a', function(){
         var taskbarId = $(this).attr('href');
         var modalId = taskbarId.replace('taskbar','');
-        $(modalId).show();
+        $(modalId).fadeIn();
+        $(modalId).prev(".b-modal").fadeIn();
+        $(modalId).sModal({content:$(modalId).html()});
         $(this).closest('#sTaskbar li').remove();
+        
     });
-    //shows the submenu of a taskbar item
-    $("body").on('click','.subToggle', function(){
-        $(this).closest('li').children('ul').fadeToggle();
-    });
-
+   
     //clear the sTaskbar of items "close all" button
     $("body").on('click','#sTaskbarCloseAll',function(){
         $(".sTaskbarItem").each(function(){
@@ -429,7 +361,7 @@ function bindButtons(){
                 'title':title,
             }
 
-            if(typeof buttons !=="undefined" ){
+            if(buttons !=="undefined" ){
                 if(buttons !="")
                     sOptions.buttons = buttons;
             }      
@@ -443,12 +375,107 @@ function bindButtons(){
 
 
 }
+
 $(document).ready(function(){
-    //hide divs and titles for modals
-    $(".bOpen").each(function(index){
-        var id = $("#"+$(this).attr('data-target'));
-        $(id).hide();
-        $(this).next(".bTitle").hide();
-    });
-bindButtons();
-});//end document ready
+    bindButtons();
+});
+  function sModal(options={}){        
+        $.sModal(options);
+        return;
+        var sSettings = sModalDefaults();
+
+        getDefaultElement().html("");
+        //if no custom settings sent along, use defaults
+        /*bugfix to clear any changes*/
+        var bSettings =  bpopupDefaults(); 
+       if(options.settings){
+            $.each(options.settings,function(key,value){
+                bSettings[key] = value;
+            });
+        }
+        //if there is no special element to popup use the default div
+        if(typeof options.element =="undefined"){
+            element = getDefaultElement();
+        }else{
+            element = options.element;        
+        }
+        // serdesign template
+        if(!options.templateHtml){
+            options.templateHtml = $(".sTemplate").html();        
+        }
+
+        //if there is no data sent,back up and use the divs current content 
+        //to preserve ajax features in basic modals we need a fix control variable
+        var insertedTemplate = false; 
+        if(!options.data){
+           options.data = element.children('.smodalContent').html();             
+            if(typeof options.data == "undefined"){
+                element.wrapInner('<div class="smodalContent">');                
+                element.prepend(options.templateHtml);
+                insertedTemplate = true;
+            }else{
+                //insertedTemplate = true;
+
+            }
+        }
+
+        if(!insertedTemplate){
+            element.html(options.templateHtml);
+            //insert correct data
+            element.append('<div class="smodalContent">'+options.data+'</div>');  
+       
+        }
+
+        //title;
+        if(options.title){
+            element.children('.draghandle').children('span').html(options.title);
+        }
+                   
+       
+        if(!element.hasClass('bpopup')){
+            element.addClass('bpopup');
+        }                
+        //show modal                
+        element.bPopup(bSettings);
+        //ignore
+        if($.isArray(options.ignore)){
+            $(options.ignore).each(function(index,value){
+                element.children(".bButtons").children("."+value).hide();                
+            });
+        }
+        //buttons
+        if($.isArray(options.buttons)){
+            element.children(".bButtons").children().hide();                
+            $(options.buttons).each(function(index,value){
+                element.children(".bButtons").children("."+value).show();                
+            });
+        }
+        if(typeof options.draggable == "undefined"){
+            options.draggable = sSettings.draggable;            
+        }
+        if(options.draggable){
+            if(typeof options.draggableSettings =="undefined"){
+                options.draggableSettings ={};
+            }
+            element.draggable(options.draggableSettings);
+        }
+
+        
+           if(typeof options.resizeable== "undefined"){
+                options.resizeable = sSettings.resizeable;
+                if(options.resizeable)
+                    if(typeof options.resizeSettings == "undefined"){
+                        options.resizeSettings = {
+                            start:function(){
+                                element.children(".smodalContent").show();
+                            },
+                        };
+                    }
+
+                resizeModals(element,options.resizeSettings);
+          }
+        
+        //return element with data
+        $(".bunfold").hide();            
+        return element.children(".smodalContent");
+}

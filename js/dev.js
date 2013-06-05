@@ -28,25 +28,30 @@
         small workaround so we can let the rest of the code run on document.ready
         and register the script in the widget on doc ready
     */
-    var defaults={element: $("#bpopup")};
     var pluginName = "sModal";
-
-    $(document).ready(function(){
     var sSettings = sModalDefaults();
     // Create the defaults
-        defaults = {
-            element: getDefaultElement(),
+    var  defaults = {
+            element: $("#bpopup"),
             templateHtml: $(".sTemplate").html(),
             draggable:sSettings.draggable,
             draggableSettings:{},
             resizeable:sSettings.resizeable,
             resizeSettings:sSettings.resizeSettings,
         };
-    });
-    function closeConfirm(obj){
-            obj.closest('.bpopup').bPopup().close();
+    $(document).ready(function(){
 
-    }
+   
+     //hide divs and titles for modals
+        $(".bOpen").each(function(index){
+            var id = $("#"+$(this).attr('data-target'));
+            $(id).hide();
+            $(this).next(".bTitle").hide();
+        });
+
+
+    });
+    
     // The actual plugin constructor
     function Plugin( element, options ) {
         this.element = element;
@@ -67,8 +72,9 @@
             object.find(".confirmTrue").addClass(options.yes.class).append(options.yes.label);
             object.find(".confirmFalse").addClass(options.no.class).append(options.no.label);
             var data =$("#sConfirmTemplate").html();
-           $("body").on('click','.confirmTrue',options.yes.click);
-            return data;
+            object.find(".confirmTrue").on('click',options.yes.click);
+            object.find(".confirmFalse").on('click',options.no.click);
+            return object.html();
         },
         init: function() {
         var sSettings = sModalDefaults(),
@@ -94,7 +100,7 @@
 
         if(typeof options.data == "undefined"){
                 options.data = element.children('.smodalContent').html();
-                if(typeof options.data =="undefined"){      
+                if(typeof options.data == "undefined"){      
                  element.wrapInner('<div class="smodalContent">');                
                  element.prepend(options.templateHtml);
                  insertedTemplate = true;
@@ -159,7 +165,7 @@
     // A really lightweight plugin wrapper around the constructor,
     // preventing against multiple instantiations
     $.fn.sModal = function ( options) {
-        if(typeof this =="function"){
+        if( typeof this == "function"){
             var object = defaults.element;
             object.html("");
         }else{
@@ -177,5 +183,6 @@
      $.extend({
         sModal:$.fn.sModal 
     });
+
 
 })( jQuery, window, document );

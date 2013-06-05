@@ -40,6 +40,7 @@
 #loginButton {
 	position: relative;
     font-size:2em;
+    top:5px;
 }
 
 #contactUs i,#loginButton i,#aboutUs i{
@@ -91,6 +92,9 @@ max-width:90%;
 #search-post-form label{
 	margin-left: 5.2em;
 	z-index: 50;
+}
+#customize {
+	padding-bottom:70px;
 }
 
 /* Menu */

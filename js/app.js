@@ -20,13 +20,11 @@ $("body").on('click','#loginButton',function(){
 $(document).ready(function(){
 //about
 	$("body").on('click','#aboutUs',function(e){
-		$.isLoading( { 'position': "overlay"});
 		jQuery.get('/site/ajaxAbout', {}, function(data) {
 			$("#aboutUsDiv").sModal({				
 				data:data,
 				settings:{transition:"slideIn"}
 			});		 
-		$.isLoading("hide");
 		});		
 	});
 
@@ -83,15 +81,15 @@ $(document).ready(function(){
 		getModalElement().bPopup(settings);
 	});
 
-
+		// Stuff to do as soon as the DOM is ready;
 	/*
-	clicking the filename icon with an attachment
+	clicking the filename icon with an attachment	
 	*/
 	$('body').on('click', '.att',function(e){
 			e.preventDefault();
-			settings = modalDefaults();
+			settings = sModalDefaults();
 			settings.content="image";
-			var element = sModal(false,'<div class="imgcontainer"></div>',settings);
+			$.sModal({data:'<div class="imgcontainer"></div>',settings:settings});
 			//element.html("hahe");
 			var imgUrl = $(this).attr('name'),
 			cap = $(this).html();
@@ -109,11 +107,8 @@ $(document).ready(function(){
 		    	maxHeight: 400
 		    }
 			);
-
-
-
 		});
-	//deleting an attachment uploaded to a post
+		//deleting an attachment uploaded to a post
 	$("body").on('click','.delAttachment',function(){
 	        var filePath = $(this).attr('name');
 	        var obj = $(this);     

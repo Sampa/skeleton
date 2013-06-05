@@ -1,5 +1,100 @@
-
 /* CRUD template js */
+
+
+/* basic confirm/delete */
+/*
+	This is triggered when the user tries to delete one or more records
+	if it returns true the deletion will continue,else it will be aborted
+*/
+function confirmDelete(){
+	var r=confirm("Are you sure?");
+	if (r==true){
+ 		return true;
+	}
+	return false;
+}
+
+/* triggered by delete button in the grid */
+function delete_record(id,modelClass,url)
+{
+	url = typeof url == 'undefined' ? "/"+modelClass+"/delete" : url;
+	/* confirm for the user */
+	if(!confirmDelete()){
+		return;
+	}
+	
+	/*delete the record*/
+ 	$.post(url,{id:id,modelClass:modelClass}, function(data, textStatus, xhr) {			    
+			var grid = data.modelClass.toLowerCase();
+		    $.fn.yiiGridView.update(grid+'-grid', { });	                                  
+	},'json');
+	/* with bootbox instead*/
+	/*	url = typeof url == 'undefined' ? "/"+modelClass+"/delete" : url;
+	bootbox.dialog("Are you sure you want to delete?",
+	 [
+		{
+			"label" : "No",
+			"class" : "btn-danger",
+			"callback": function() {}
+		}, 
+		{
+			"label" : "Yes",
+			"class" : "btn-success",
+			"callback": function() {
+				  $.post(url,{id:id,modelClass:modelClass}, function(data, textStatus, xhr) {			    
+					var grid = data.modelClass.toLowerCase();
+		            $.fn.yiiGridView.update(grid+"-grid", { });	                                  
+				  },"json");
+			  }
+		},
+	 ]
+	);*/
+}
+
+/*delete the selected rows */
+$("body").on('click',".deleteSelected",function(){
+	var grid = $(".grid-view").attr('id');
+
+	/* normal confirm/delete*/
+	/* confirm for the user */
+	if(!confirmDelete()){
+		return;
+	}
+	/*delete the records*/
+	jQuery.post('/post/deleteMany', {models: $(".select-result").html()}, function(data, textStatus, xhr) {
+		$.fn.yiiGridView.update(grid, {	});	
+	});
+	/*with bootbox instead*/
+	/*
+	var grid = $(".grid-view").attr('id');
+	bootbox.dialog("Are you sure you want to delete?",
+	 [
+		{
+			"label" : "No",
+			"class" : "btn-danger",
+			"callback": function() {}
+		}, 
+		{
+			"label" : "Yes",
+			"class" : "btn-success",
+			"callback": function() {
+				$.post('/post/deleteMany', {models: $(".select-result").html()}, function(data, textStatus, xhr) {
+					$.fn.yiiGridView.update(grid, {	});	
+				});
+			  }
+		},
+	 ]
+	);
+	*/
+
+
+});
+
+
+
+
+
+
 $(".admin-form form").submit(function(event){
 	event.preventDefault();
 	 if (this.beenSubmitted){
@@ -10,7 +105,6 @@ $(".admin-form form").submit(function(event){
       this.beenSubmitted = true;
 
 	var id = this.id;
-	$(this).isLoading({position:"overlay"});
 	$.post($(this).attr('action'), $(this).serialize(),function(data){
 	 	if(data !== null && data.success){
 	  			$("#"+id)[0].reset();      			
@@ -31,29 +125,16 @@ $(".admin-form form").submit(function(event){
 function renderUpdateForm(id,modelClass,url)
 {
 	url = typeof url == 'undefined' ? "/"+modelClass.toLowerCase()+"/jsonAttributes" : url;
-  	$.ajax({
-  		type: 'POST',
-    	url: url,
-   		data:{"id":id},
-		success:function(data){
-			var settings = modalDefaults();
-			data = $.parseJSON(data);
+  	$.post(url,{"id":id},function(data){
 			$.each(data, function(index, value) {
 				var selector = "#"+modelClass+"_"+index;
 				try{
 					$(".admin-form "+selector).val(value);
-				}catch(err){
-				}
+				}catch(err){}
 			});
 			$(".admin-form").slideDown();
-        },
-   error: function(data) { // if error occured
-           alert(JSON.stringify(data)); 
-         alert("Error occured.please try again");
-    },
-
-  dataType:'html'
-  });
+        },'json'
+  	);
 
 }
 
@@ -61,63 +142,17 @@ function renderUpdateForm(id,modelClass,url)
 
 function renderView(id,url)
 { 
-url = typeof url == 'undefined' ? "/"+modelClass+"/view" : url;
- var data="id="+id;
-
-  $.ajax({
-  	type: 'POST',
- 	url: url,
-  	data:data,
-	success:function(data){		
-		$(".admin-form").slideUp('slow');
-		$(".search-form").slideUp('slow');
-		$(".view-content").html(data);
-		$(".view-wrapper").slideDown();
-   },
-   error: function(data) { // if error occured
-         alert("Error occured.please try again");
-    },
-
-  dataType:'html'
-  });
-
+url = typeof url=="undefined" ? "/"+modelClass+"/view" : url;
+ jQuery.get(url, {id:id}, function(data, textStatus, xhr) {
+   	$(".admin-form").slideUp('slow');
+	$(".search-form").slideUp('slow');
+	$(".view-content").html(data);
+	$(".view-wrapper").slideDown();
+ });
 }
 
 
-//deletes a post if the dialog is confirmed
-function delete_record(id,modelClass,url)
-{
-	url = typeof url == 'undefined' ? "/"+modelClass+"/delete" : url;
 
-	bootbox.dialog("Are you sure you want to delete?", [
-		{
-		"label" : "No",
-		"class" : "btn-danger",
-		"callback": function() {}
-		}, 
-		{
-		"label" : "Yes",
-		"class" : "btn-success",
-		"callback": function() {
-			  $.ajax({
-			    type: 'POST',
-			    url: url,
-		        data:{id:id,modelClass:modelClass},
-				success:function(data){
-					data = $.parseJSON(data);
-					var grid = data.modelClass.toLowerCase();
-	                 $.fn.yiiGridView.update(grid+'-grid', { });	                                  
-			    },
-			   error: function(data) { 
-			         alert("Error occured.please try again");
-			    },
-			  dataType:'html'
-			  });
-		  }
-		 },
-		]
-	);		
-}
 // making a grid selectable so you can do multi delete
 function makeSelectable(id){
 			$(".deleteSelected").fadeOut();
@@ -150,13 +185,6 @@ function makeSelectable(id){
 		}
 
 
-//delete the selected rows
-$("body").on('click',".deleteSelected",function(){
-	var grid = $(".grid-view").attr('id');
-	jQuery.post('/post/deleteMany', {models: $(".select-result").html()}, function(data, textStatus, xhr) {
-		$.fn.yiiGridView.update(grid, {	});	
-	});
-});
 // toggle the  search form
 $('body').on('click','.toggleSearch', function(){
 	$(".admin-form").slideUp('slow');

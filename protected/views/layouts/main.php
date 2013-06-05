@@ -42,11 +42,6 @@
 	?>
 
 <div style="width: 100%;">
-	<style type="text/css">
-
-		
-	</style>
-
 	<?php	
 		$this->widget('SMenu',array(
 			'id'=>'sphere-orange',
@@ -103,7 +98,8 @@
 			<button id="loginButton" data-target="login" rel="tooltip" title="Login" class="btn btn-primary">
 				<i class="icon-user"></i> 		
 			</button>		
-			<div id="login" class="hide">
+			<div id="login" class="hide" >
+					<span class="bTitle">Login</span>
 					<?php $this->renderPartial('/site/login',array('model'=>new LoginForm));?>
 	 		</div>
 	 		<div id="register" class="hide">
@@ -122,14 +118,14 @@
 	
 	</div>
 
-	<!-- footer -->
+
+</div><!-- page -->
+<!-- footer -->
 	<?php
 		echo CHtml::tag('div',array('id'=>'footer','style'=>'clear:both;'));
 			echo "Copyright " . date('Y') .  " by Skeleton <br/>";
 		echo CHtml::closeTag('div');
 	?>
-
-</div><!-- page -->
 	<?php 
 		$this->widget('ext.smodal.smodal', array(
 			'headerText'=>'sModal',
@@ -152,7 +148,7 @@
 				),
 				'bfold' => array(
 					'icon'=>'icon-chevron-up',
-					'inTaskbar'=>false,
+					'inTaskbar'=>true,
 				),
 				'bunfold' => array(
 					'icon'=>'icon-chevron-down',
@@ -197,24 +193,29 @@
 	?>
 <script>
 $(document).ready(function() {
-	$.sModal({
+	/*$.sModal({
 		confirm:{
 				'yes':{
 					'label':'Yes',
 					'class':'btn btn-success',
-					"click":function(){
+					'click':function(){
 						alert("You choose yes");
+						closeModal($(this));
 				}
 				},
 				'no':{
 					'label':'No',
-					'class':'btn btn-danger',					
+					'class':'btn btn-danger',			
+					'click':function(){
+						alert("You choose no");
+					}
 				},
 			},
 		
 		title:"Are you sure?",
 		buttons:['bclose'],	
 	});
+*/
 });
 </script>
 </body>
