@@ -1,0 +1,63 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   css/app.css
+#	modified:   css/bpopup.css
+#	modified:   css/main.css
+#	modified:   css/skeleton.css
+#	modified:   js/app.js
+#	modified:   js/dev.js
+#	modified:   js/extended.js
+#	modified:   js/sGiiTemplate.js
+#	modified:   protected/components/Controller.php
+#	deleted:    protected/controllers/PostController - personlig.php
+#	modified:   protected/extensions/sGii/sGiiTemplate.js
+#	modified:   protected/views/layouts/column1.php
+#	modified:   protected/views/layouts/column2.php
+#	modified:   protected/views/layouts/main.php
+#	modified:   protected/views/post/admin.php
+#	modified:   protected/views/site/pages/smodal.php
+#	modified:   protected/views/site/pages/sprism.php
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#   (commit or discard the untracked or modified content in submodules)
+#
+#	modified:   protected/modules/auth (modified content)
+#	modified:   protected/modules/sdashboard (modified content)
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	assets/
+#	images/
+#	protected/controllers/PostController-hm.php
+#	protected/extensions/sGii/.gitattributes
+#	protected/extensions/sGii/.gitignore
+#	protected/extensions/sGii/readme.md
+#	protected/extensions/sGii/sbootstrapcrud/templates/basic bootstrap/
+#	protected/extensions/scrud/
+#	protected/extensions/smenu/
+#	protected/extensions/smodal/
+#	protected/extensions/sprism/.gitattributes
+#	protected/extensions/sprism/.gitignore
+#	protected/extensions/sprism/readme.md
+#	protected/views/post/admin-not demo.php
+#	protected/views/site/contact - Copy.php
+#	protected/views/site/docs/
+#	protected/views/site/pages/sgii.php
+#	protected/views/site/pages/smenu.php
+#	protected/views/site/pages/snippets.php
+#	protected/views/site/sGiiConfirmreadme.php
+#	protected/views/site/sGiiModalreadme.php
+#	protected/views/site/snippets/
+#	uploads/81b0e1902f1c695c267651e72616f46e/
+#	uploads/913034dd0b1b8c3d5bcccbac38d13b9a/
+#	uploads/e0c5b770acef5dc9a9c462548446c082/
+#	uploads/eaebf0b618a31bc735037646eacf7867/
+
