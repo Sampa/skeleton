@@ -1,78 +1,42 @@
 <?php
-$this->breadcrumbs=array(
-	'Posts'=>array('index'),
-	$model->title,
-);
-?>
-<h1>View Post <?php echo $model->id; ?></h1>
+	$this->breadcrumbs=array(
+		$model->title,
+	);
+	$this->pageTitle=$model->title;
 
-<?php $this->widget('editable.EditableDetailView',array(
-	'data'=>$model,
-	'url' => $this->createUrl('/Post/updateAttribute'), //common submit url for all fields
-    'params' => array('YII_CSRF_TOKEN' => Yii::app()->request->csrfToken), //params for all fields
-	'attributes'=>array(
-array(
-	   	 'name' => 'id',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'title',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'content',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'tags',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'status',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'create_time',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'update_time',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'author_id',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-array(
-	   	 'name' => 'fileFolder',
-		    'editable' => array(
-			    'type' => 'text',
-			    'inputclass' => 'input-large',			    			    
-		    )
-	    ),
-	),
-)); ?>
+	echo $this->renderPartial('_view', array('data'=>$model,'editableTitle'=>true),true,false); 
+
+		if($comment){
+			if(Yii::app()->user->hasFlash('commentSubmitted')){ 				
+				echo CHtml::tag('div',array('class'=>'flash-success'),Yii::app()->user->getFlash('commentSubmitted')); 				
+			}
+		}
+	?> 
+	<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'lynncomments'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments</a></noscript>
+    
+<!--<div id="comments">
+	<?php
+	/*	if($model->commentCount > 0){
+			echo "<h3>";
+			echo $model->commentCount >1 ? $model->commentCount . ' comments' : 'One comment';
+			echo "</h3>";
+		}
+		$this->renderPartial('_comments',array(
+			'post'=>$model,
+			'comments'=>$model->comments,
+		));
+	*/?> 
+</div>--><!-- comments -->
+

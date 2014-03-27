@@ -42,19 +42,17 @@ echo "\$this->breadcrumbs=array(
 	</div>
 
 <!-- form -->
-	<div id="admin-<?=$this->class2name($this->modelClass);?>" class="admin-form hide">
+	<div id="admin-<?=$this->class2name($this->modelClass);?>" class="admin-form" style="display:none;">
 	<?php echo "<?php"; ?>
 		$this->renderPartial('_form', array('model'=>$model));
 	<?php echo "?>"; ?> 
 	</div>
 <!-- view file is put here-->
-	<div class="view-wrapper hide">
+	<div class="view-wrapper" style="display:none;">
 		<button class="btn closeViewContent"> <i class="icon-chevron-up"></i> Close</button>
 		<div class="view-content"></div>
 	</div>
-<!-- multi delete -->	
-<button class="deleteSelected btn btn-danger hide"><i class="icon-trashbin">Delete selected</button>
-<div class="select-result hide"div>
+
 <?php echo "<?php"; ?>
  $this->widget('TbGridView',array(
 	'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
@@ -97,9 +95,3 @@ echo "\$this->breadcrumbs=array(
 
 		),
 	)); ?>
-<script>	
-	$(function() {
-		var grid = $(".grid-view").attr('id');
-		makeSelectable(grid);		
-	});
-</script>

@@ -36,38 +36,6 @@ class CommentController extends Controller
 		);
 	}
 
-	public function actionCreate($return=false)
-	{
-		$model=new Comment;
-
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
-
-		if(isset($_POST['Comment']))
-		{
-			$model->attributes=$_POST['Comment'];
-			$model->topicid = $_POST['Comment']['post_id'];
-			if($model->save())
-			{
-				echo CJSON::encode(array('status'=>'success','id'=>$model->post_id));
-				return;
-			}
-		}
-		if($return){
-			$view = $this->renderPartial('_form',array(
-				'model'=>$model,
-			),true,true);
-			return $view;
-		}
-		$this->render('_form',array(
-				'model'=>$model,
-		));
-	}
-
-	public function actionGetForm(){
-		$view = $this->renderPartial('_form',array('model'=>new Comment),true,true);
-		echo $view;
-	}
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -142,14 +110,6 @@ class CommentController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-	}
-	protected function performAjaxValidation($model,$form_id)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']===$form_id)
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
 	}
 
 	/**

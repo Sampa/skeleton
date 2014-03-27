@@ -1,3 +1,68 @@
+/*blog new*/
+.cursor{cursor:pointer;}
+#attachments{position:relative;left:-93px; width:500px;	}
+#attachments ul{
+	list-style-type: none;
+}
+#attachments ul li{
+	display:inline;
+}
+
+.uploadDiv{
+	position: relative;
+	top: 30px;
+}
+/*
+	Drag and drop support 
+*/
+#dropZone{
+	background-color: #7cbbe2;
+	height:150px;
+	width:300px;
+	border-radius: 7px 7px 7px 7px;
+	box-shadow: none;
+	text-align: center;
+	margin-top: 10px;
+	padding-top: 60px;
+	position:relative;
+	left:-32px;
+}
+#dropZone span{
+	font: bold 161% sans-serif;
+}
+
+.uploadButtons{
+  position:relative;  height:10px;
+
+}
+
+#post-form label{
+	padding-right: 35px;
+}
+#Post_content{
+}
+#s2id_Post_tags{
+	margin-left: 6px;
+}
+#tagsDiv{
+	margin-top: 3px;
+}
+
+/*contact page*/
+#contact-form label{
+	padding-right: 25px;
+}
+#ContactForm_subject{
+}
+
+/*base*/    
+#index-right{
+	position: absolute;
+	right:-5%;
+}
+#index-left{
+	min-width:100%;
+}
 body
 {
 	margin: 0;
@@ -20,13 +85,19 @@ body
 	margin: 0;
 	padding: 0;
 	border-top: 3px solid #C9E0ED;
+	width:80%;
+	margin-left: 10%;
 }
-
+#contactme{
+	float:right;
+}
 #content
 {
-    padding: 20px;
+    padding: 20px 0px 40px 5px;
     position: absolute;
     top: 10%;
+    min-width:100%;
+    border:0px solid black;
 }
 
 #sidebar
@@ -38,9 +109,9 @@ body
 #footer
 {
 	width:100%;
-	padding: 10px;
+	padding: 5px;
 	position: fixed;
-	bottom:30px;
+	bottom:0px;
 	font-size: 0.8em;
 	text-align: center;
 	border-top: 1px solid #C9E0ED;

@@ -37,9 +37,12 @@ class Controller extends CController
 	public function init()
     {
 		parent::init();	
+		if(isset($_GET['lang'])){
+			Yii::app()->language = $_GET['lang'];
+	  	}
 	  	if(Yii::app()->request->isAjaxRequest){
-    		Yii::app()->clientScript->scriptMap['*.js'] = false;
-    		Yii::app()->clientScript->scriptMap['*.css'] = false;
+    		//Yii::app()->clientScript->scriptMap['*.js'] = false;
+    		//Yii::app()->clientScript->scriptMap['*.css'] = false;
 		}
 	}
 	 public function convertModelToArray($models) {
@@ -68,6 +71,10 @@ class Controller extends CController
         }
         return $result;
     }
+    
+
+
+	
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.

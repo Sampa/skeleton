@@ -16,11 +16,11 @@ class Post extends CActiveRecord
 	const STATUS_DRAFT=1;
 	const STATUS_PUBLISHED=2;
 	const STATUS_ARCHIVED=3;
-
-	private $_oldTags;
 	public $picture;
 	public $fileFolder;
-	public $dateSearchRange;
+
+	private $_oldTags;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -46,15 +46,13 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content', 'required'),
+			array('title, content, status', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
 			array('title', 'length', 'max'=>128),
-			array('author_id','length','max'=>'255'),
 			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/', 'message'=>'Tags can only contain word characters.'),
-			array('tags', 'normalizeTags'),
-			array('picture', 'length', 'max' => 255, 'tooLong' => '{attribute} is too long (max {max} chars).', 'on' => 'upload'),
-   			array('picture', 'file', 'types' => 'jpg,jpeg,gif,png', 'maxSize' => 1024 * 1024 * 2, 'tooLarge' => 'Size should be less then 2MB !!!', 'on' => 'upload'),
-			array('title, status,fileFolder,id,author_id,dateSearchRange,create_time,update_time', 'safe', 'on'=>'search'),
+			//array('tags', 'normalizeTags'),
+
+			array('title, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,16 +81,12 @@ class Post extends CActiveRecord
 			'content' => 'Content',
 			'tags' => 'Tags',
 			'status' => 'Status',
-			'create_time' => 'Created',
+			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
 			'author_id' => 'Author',
-			'dateSearchRange'=>'',
 		);
 	}
 
-	public function behaviors(){
-		return array( 'CAdvancedArFindBehavior' => array( 'class' => 'ext.CAdvancedArFindBehavior.CAdvancedArFindBehavior')); 
-	}
 	/**
 	 * @return string the URL that shows the detail of the post
 	 */
@@ -103,9 +97,8 @@ class Post extends CActiveRecord
 			'title'=>$this->title,
 		));
 	}
-
 	public function getLink(){
-		return CHtml::link($this->title,$this->getUrl(),array());
+		return CHtml::link($this->title,$this->getUrl,array());
 	}
 	/**
 	 * @return array a list of links that point to the post list filtered by every tag of this post
@@ -113,8 +106,8 @@ class Post extends CActiveRecord
 	public function getTagLinks()
 	{
 		$links=array();
-		foreach(Tag::string2array($this->tags) as $tag)
-			$links[]=CHtml::link(CHtml::encode($tag), array('post/index', 'tag'=>$tag));
+		//foreach(Tag::string2array($this->tags) as $tag)
+		//	$links[]=CHtml::link(CHtml::encode($tag), array('post/index', 'tag'=>$tag));
 		return $links;
 	}
 
@@ -202,18 +195,6 @@ class Post extends CActiveRecord
 		$criteria->compare('title',$this->title,true);
 
 		$criteria->compare('status',$this->status);
-
-		$user = User::model()->findByAttributes(array('username'=>$this->author_id));
-		if(isset($user->id)){
-			$criteria->compare('author_id',$user->id);
-		}
-
-		//will be start to enddate in the format yyyy/mm/dd - yyyy/mm/dd
-		if(!empty($this->create_time)){
-			$dates = explode(" - ",$this->create_time);
-			$criteria->addCondition("FROM_UNIXTIME(create_time, '%Y/%m/%d') > '".$dates[0]."'"); 		
-			$criteria->addCondition("FROM_UNIXTIME(create_time, '%Y/%m/%d') < '".$dates[1]."'"); 		
-		}
 
 		return new CActiveDataProvider('Post', array(
 			'criteria'=>$criteria,
@@ -416,18 +397,4 @@ class Post extends CActiveRecord
 			
 			return $text;
 	}
-
-		
-	public static function formatBytes($bytes, $precision = 2) { 
-	    $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
-
-	    $bytes = max($bytes, 0); 
-	    $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-	    $pow = min($pow, count($units) - 1); 
-
-	     $bytes /= pow(1024, $pow);
-	    // $bytes /= (1 << (10 * $pow)); 
-
-	    return round($bytes, $precision) . ' ' . $units[$pow]; 
-	} 
 }

@@ -4,9 +4,9 @@ $this->breadcrumbs=array(
 	'Create',
 );
 ?>
-<div class="container" style="width:100%;">
-	<a href="/uploads/256076e2c265c8190bb498e3ed500ae6/who-said-it-was-hard-to-explain.jpg" rel="image" href="#" class="bOpen">who-said-it-was-hard-to-explain.jpg</a>
-	<div style="float:left;"> 
+
+<div class="row" style="min-width:100%;">
+	<div class="col-lg-6"> 
 		<?php
 			isset($iframe) ? $iframe=$iframe : $iframe = false;
 		if(!isset($modalUpdate))
@@ -15,13 +15,14 @@ $this->breadcrumbs=array(
 			echo CHtml::tag('span',array('id'=>'modelId','style'=>'display:none;'),$model->id);
 		}
 	
-		 
-			echo $this->renderPartial('_form', array('model'=>$model));		
+		$form=$this->beginWidget('TbActiveForm',$formSettings); 
+			echo $this->renderPartial('_formFields', array('model'=>$model,'form'=>$form));
+		$this->endWidget();
 		?>
 
 	</div>
 
-	<div class="uploadButtons">
+	<div class="col-lg-3 uploadDiv">
 	<?php
 		$this->widget('bootstrap.widgets.TbFileUpload', array(
 		    'url' => $this->createUrl("post/upload"),
@@ -35,19 +36,27 @@ $this->breadcrumbs=array(
 		   	    'completed' => 'js:function (e,data) {uploadCallback(e,data);}',
 			    'dropZone'=>'#dropZone',
 			    'acceptFileTypes' => 'js:/(\.|\/)(gif|jpe?g|png)$/i',
-			    'htmlOptions'=>'margin-left:0px; padding: 0px;',
+			    'htmlOptions'=>'margin-left:30px; padding: 0px;',
 			))); 
 	?>
-		<div id="dropContainer">
-				<div id="dropZone"> <!--Drag & drop file upload area -->
-					<span><?= Yii::t('skeleton','DRAG & DROP HERE');?></span>
-				</div>							
-		</div>
+		<div id="dropZone"> <!--Drag & drop file upload area -->
+			<span><?= Yii::t('skeleton','DRAG & DROP HERE');?></span>
+		</div>							
 		<div id="attachments">  <!-- container for where the file upload info is appended can have any ul within it-->
 				<ul>
+					<!--
+					only foodata to test layout
 					<li>	
+						<i name="D:\Programmering\xampp\htdocs\linn\uploads/78785f4debd23c24e93850db2f58b88e/hface.png" class="icon-remove cursor delAttachment"></i>
+						 <a href="/uploads/78785f4debd23c24e93850db2f58b88e/hface.png" title="hface.png">
+						 <img src="/uploads/78785f4debd23c24e93850db2f58b88e/hface.png" title="hface.png" height="75" width="75"></a>					</li>
+					</li>	
+					<li>
+						<i name="D:\Programmering\xampp\htdocs\linn\uploads/78785f4debd23c24e93850db2f58b88e/hface.png" class="icon-remove cursor delAttachment"></i> <a href="/uploads/78785f4debd23c24e93850db2f58b88e/hface.png"><img src="/uploads/78785f4debd23c24e93850db2f58b88e/hface.png" title="hface.png" height="75" width="75"></a>					</li>
 					</li>
+					--!
 				</ul>
 		</div>
 	</div>
 </div>
+    

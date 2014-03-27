@@ -1,44 +1,17 @@
-$("body").on('click','#loginButton',function(){
-		$("#login").sModal({			
-			buttons:["bpin","bclose"],
-			resizeable:false,
-			title:"Login",
-		});
-	});
-	$("body").on('click','#registerButton',function(){
-		var settings = modalDefaults();
-		settings.position = [200,10],
-		sModal({
-			element:$("#register"),
-			buttons:["bpin","bclose"],
-			resizeable:false,
-			title:'Sign up',
-			settings:settings,
-		});
-	});
-	
 $(document).ready(function(){
 //about
 	$("body").on('click','#aboutUs',function(e){
+		$.isLoading( { 'position': "overlay"});
 		jQuery.get('/site/ajaxAbout', {}, function(data) {
-			$("#aboutUsDiv").sModal({				
+			sModal({
+				element:$("#aboutUsDiv"),
 				data:data,
 				settings:{transition:"slideIn"}
 			});		 
+		$.isLoading("hide");
 		});		
 	});
-
-	/* 
-	contact form 
-	 */
-	//contactus the left menu button
-	$("body").on('click','#contactUs',function(event){
-		event.preventDefault();
-		var settings = modalDefaults();
-		settings.transition= 'slideIn';
-		handleContactForm();//request render reset
-	});
-
+	
 
 	//double trigger on two diffrent events
 	$("body").on('click',"#contactSubmit",function(event){
@@ -56,40 +29,21 @@ $(document).ready(function(){
 	$('#Post_content').markItUpRemove(myBBcodeSettings);
  	$('#Post_content').markItUp(myBBcodeSettings);
 	$(".select2-input").hide();
-	popTooltip("Post_");
-	//make the modal placeholder draggable
-	popTooltip("Comment_");
-	//set tooltips for left menu
-
-	$('#contactUs').tooltip({'placement':'right','html':true});
-	$('#aboutUs').tooltip({'placement':'right'})
-	$('#loginButton').tooltip({'placement':'right'});
-	
-	
 
 	/* Preserves the uploadcallback for the file upload in post form*/
 	$("#Post-form").bind('fileuploadsubmit', function (e, data) {
 	   	var input = $('#Post_fileFolder');
 		data.formData = {example: input.val()};
 	});
-	/* displays the comment form */
-	 $("body").on('click','.leaveComment', function(){
-		var settings = modalDefaults();
-		settings.position= [620,"auto"];
-		settings.loadUrl = "/comment/GetForm";
-		prepareModalDiv("");
-		getModalElement().bPopup(settings);
-	});
 
-		// Stuff to do as soon as the DOM is ready;
 	/*
-	clicking the filename icon with an attachment	
+	clicking the filename icon with an attachment
 	*/
 	$('body').on('click', '.att',function(e){
 			e.preventDefault();
-			settings = sModalDefaults();
+			settings = modalDefaults();
 			settings.content="image";
-			$.sModal({data:'<div class="imgcontainer"></div>',settings:settings});
+			var element = sModal(false,'<div class="imgcontainer"></div>',settings);
 			//element.html("hahe");
 			var imgUrl = $(this).attr('name'),
 			cap = $(this).html();
@@ -107,8 +61,11 @@ $(document).ready(function(){
 		    	maxHeight: 400
 		    }
 			);
+
+
+
 		});
-		//deleting an attachment uploaded to a post
+	//deleting an attachment uploaded to a post
 	$("body").on('click','.delAttachment',function(){
 	        var filePath = $(this).attr('name');
 	        var obj = $(this);     
@@ -151,19 +108,13 @@ $(document).ready(function(){
 	});
 }); /*doc ready*/
 
-/*
-diffrent functions
-*/
+function portfolioUploadCallback(e,data){
+    var filename = data.files[0]["name"];
+    var publicurl = data.result[0].publicUrl;
+    var path = data.result[0].location;
+    $("#portfolio").append('<a href="'+publicurl+'" title="'+filename+'"><img src="'+publicurl+'" title="'+filename+'" height="75" width="75"/></a>');
 
- $("body").on('click','.sblink',function(){
-        var modal = getModalFromButton($(this));
-        //do whatever you want here, lets dance alittle
-        foldModal(modal);
-        unfoldModal(modal);
-        minimizeModal(modal);
-        maximizeModal(modal,50,50);
- });
-
+}
 //handles the submmitting of the contactform
 function handleContactForm(){
 	$.isLoading( { 'position': "overlay"});
@@ -210,7 +161,24 @@ function uploadCallback(e,data){
 	var publicurl = data.result[0].publicUrl;
 	var path = data.result[0].location;
 	$("#Post_fileFolder").val(data.result[0].fileFolder); // add the folder with the files to the form
-	$("#attachments ul").append('<li><i name="'+path+'" class="icon-remove cursor delAttachment"></i> <a class="att" href="#" name="'+publicurl+'">'+filename+'</a></li>');
+	$("#attachments ul").append('<li><i name="'+path+'" class="icon-remove cursor delAttachment"></i> <a href="'+publicurl+'" title="'+filename+'"><img src="'+publicurl+'" title="'+filename+'" height="75" width="75"/></a></li>');
 }
 
 
+$('#attachments').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+        },
+        image: {
+            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+            titleSrc: function(item) {
+                return item.el.attr('title') + '<small>&copy; Linn Oscarsson</small>';
+            }
+        }
+    });

@@ -9,7 +9,10 @@ class Comment extends CActiveRecord
 	 * @var integer $status
 	 * @var integer $create_time
 	 * @var string $author
+	 * @var string $email
+	 * @var string $url
 	 * @var integer $post_id
+	 
 	 */
 	const STATUS_PENDING=1;
 	const STATUS_APPROVED=2;
@@ -39,8 +42,10 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content, author', 'required'),
-			array('author', 'length', 'max'=>128),
+			array('content, author, email', 'required'),
+			array('author, email, url', 'length', 'max'=>128),
+			array('email','email'),
+			array('url','url'),
 		);
 	}
 
@@ -67,6 +72,8 @@ class Comment extends CActiveRecord
 			'status' => 'Status',
 			'create_time' => 'Create Time',
 			'author' => 'Name',
+			'email' => 'Email',
+			'url' => 'Website',
 			'post_id' => 'Post',
 		);
 	}

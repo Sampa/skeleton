@@ -11,10 +11,10 @@ class TbPopVal extends CWidget
 	public $headerText ="Title";
 	public $headerClass ="btn-primary"; 
 	public $noErrorHeaderClass ="btn-success";
-	public $errorHeaderClass ="btn-danger";
+	public $errorHeaderClass ="red";
 	public $content="Content";
 	public $type = "val";
-	public $width;
+	public $width ="300px";
 	public $height;
 	public $element;
 
@@ -32,9 +32,10 @@ class TbPopVal extends CWidget
 
 		
 		$cs = Yii::app()->getClientScript();
-		$baseUrl = dirname(__FILE__).'../assets/';
+		$baseUrl = dirname(__FILE__).'/assets/';
 
-		$cs->registerScriptFile($baseUrl. 'js/popval.js', CClientScript::POS_HEAD);
+		$cs->registerScriptFile($baseUrl. 'js/popval.js', CClientScript::POS_END);
+		$cs->registerCssFile($baseUrl. 'css/popval.css');
 
 		if($this->form &&  $this->type != "tooltip"){
 			if($this->attribute=="summary"){
@@ -43,20 +44,20 @@ class TbPopVal extends CWidget
 			$this->content = $this->form->error($this->model,$this->attribute,array('afterValidateAttribute' => 'js:function(form, attribute, data, hasError)
 							    { 
 							    	if(hasError){							    		
-							    		/*$("label[for=\""+attribute.inputID+"\"]").removeClass("green");
+							    		$("label[for=\""+attribute.inputID+"\"]").removeClass("green");
 							    		
 							    		$("label[for=\""+attribute.inputID+"\"]").addClass("red");
-							    		*/
+							    		
 							    		$("#pop_val_"+attribute.inputID).show();
 							    	}else{
 
-							    		/*$("#"+attribute.inputID).attr("style","border:1px solid #5BB75B;");
+							    		$("#"+attribute.inputID).attr("style","border:1px solid #5BB75B;");
 							    		
 							    		$("label[for=\""+attribute.inputID+"\"]").removeClass("red");
 							    		
 							    		$("label[for=\""+attribute.inputID+"\"]").addClass("green");  		
 							    				   	
-					   				   	*/
+					   				   	
 					   				   	$("#pop_val_"+attribute.inputID).hide();
 								    	
 							    	}
@@ -72,11 +73,11 @@ class TbPopVal extends CWidget
 	public function run()
 	{
 	?>
-		<div style="position: relative; display:inline; width: 0; height: 0; <?=$this->top . $this->left; ?>">
-			<div id="pop_<?=$this->element;?>"  class="popover fade <?=$this->position;?> in" style="<?= $this->width . $this->height;?>display:none;">
+		<div style="position: relative; display:inline; <?= $this->top . $this->left; ?>">
+			<div id="pop_<?=$this->element;?>"  class="popover fade <?=$this->position;?> in" style="<?= $this->width . $this->height;?> display:none;">
 				<div class="arrow"></div>
-					<div class="popover-inner">
-						<h3 class="popover-title <?=$this->headerClass;?>"><?=$this->headerText;?></h3>
+					<div class="popover-inner panel-danger">
+						<h3 class="popover-title <?=$this->headerClass;?>" style="background-color:#BD362F;"><?=$this->headerText;?></h3>
 						<div class="popover-content">
 							<p>
 								<?=$this->content;?>

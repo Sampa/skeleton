@@ -8,6 +8,9 @@ $this->breadcrumbs=array(
 ?>
 
 <h1>Update Post <?php echo $model->id; ?></h1>
-
-<?php	echo $this->renderPartial('_form', array('model'=>$model));
-?> 
+<hr/>
+<?php
+	$form=$this->beginWidget('TbActiveForm',$formSettings); 
+		echo $this->renderPartial('_formFields', array('model'=>$model,'form'=>$form));
+	$this->endWidget();
+?>

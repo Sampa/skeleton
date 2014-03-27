@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-	public $layout='column1';
+	public $layout='main';
 
 	/**
 	 * Declares class-based actions.
@@ -39,39 +39,6 @@ class SiteController extends Controller
 
 	public function actionIndex(){
 		$this->render('index');
-	}
-	/**
-	 * Displays the contact page
-	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				//mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);				
-				//Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				if(Yii::app()->request->isAjaxRequest){
-					echo CJSON::encode(array('status'=>"success"));
-				}else{
-					$this->refresh();
-				}
-				$model->unsetAttributes();
-				return;
-			}
-
-		}
-			if(Yii::app()->request->isAjaxRequest){
-
-				echo CJSON::encode(array('content'=>$this->renderPartial('contact',array('model'=>$model),true)));
-			}else{
-				$this->render('contact',array('model'=>$model));
-			}
-		
 	}
 
 
@@ -120,13 +87,26 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-	public function actionajaxContact(){
-		$model=new ContactForm;
-		echo CJSON::encode($this->renderPartial('contact',array('model'=>$model),false,true));
+	public function actionContact(){
+		$model = new ContactForm;
+		$this->performAjaxValidation( $model );
+		if ( isset ( $_POST['ContactForm'] ) )
+		{
+			$model->attributes = $_POST['ContactForm'];
+			if ( $model->validate() )
+			{
+				$model->email ="idrini@gmail.com";
+				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
+				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
+				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				$this->refresh();
+			}
+		}
+		$this->render( 'contact',array( 'model'=>$model ) );
+		//$model=new ContactForm;
+		//echo $this->render('contact',array('model'=>$model),false,true);
 	}
-	public function actionajaxAbout(){
-		echo $this->renderPartial("/site/pages/about",array(),true,false);
-	}
+
 
 	/**
 	 * Deletes a particular model.
@@ -156,4 +136,60 @@ class SiteController extends Controller
 			   echo "false"; 	
 	    }	
 	}
+
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==="comment-form")
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+
+	public function actionUpload()
+	{
+	    header('Vary: Accept');
+	    if (isset($_SERVER['HTTP_ACCEPT']) && 
+	        (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false))
+	    {
+	        header('Content-type: application/json');
+	    } else {
+	        header('Content-type: text/plain');
+	    }
+	    $data = array();
+	 
+	    $model = new Post('upload');
+	    $model->picture = CUploadedFile::getInstance($model, 'picture');
+	    $path = realpath(dirname(__FILE__).'/../../images/portfolio'); 
+	    if ($model->picture !== null  && $model->validate(array('picture')))
+	    {
+	    	$foo = Yii::app()->file->set($path,true);
+	        $model->picture->saveAs($path."/".$model->picture->name);
+	        $image = new EasyImage($path."/".$model->picture->name);
+			$image->resize(100, 100);
+			$image->save($path.'/thumbnails/'.$model->picture->name);
+	            // return data to the fileuploader
+	            	$basePath = str_replace('\\','\\\\',Yii::app()->basePath);
+	           		$data[] = array(
+	                'name' => $model->picture->name,
+	                'type' => $model->picture->type,
+	                'size' => $model->picture->size,
+	                'fileFolder'=>$path,
+	                'location'=>$path."/".$model->picture->name,
+	                'publicUrl'=>"/images/portfolio/".$model->picture->name,
+	                'delete_url' => $this->createUrl('post/delete', array('id' => $model->id, 'method' => 'uploader')),
+	                'delete_type' => 'POST');
+
+	    } else {
+	        if ($model->hasErrors('picture'))
+	        {
+	            $data[] = array('error', $model->getErrors('picture'));
+	        } else {
+	            throw new CHttpException(500, "Could not upload file ".     CHtml::errorSummary($model));
+	        }
+	    }
+	    // JQuery File Upload expects JSON data
+	    echo json_encode($data);
+	}
+	
 }

@@ -1,3 +1,4 @@
+
 function popTooltip(prefix){
 		var selector = "[id^="+prefix+"]";
 		$("body").on("focus",selector,function(){

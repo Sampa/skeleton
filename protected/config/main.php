@@ -6,15 +6,15 @@ Yii::setPathOfAlias('editable', dirname(__FILE__).'/../extensions/x-editable');
 Yii::setPathOfAlias('root', dirname(__FILE__).'/../../');
 Yii::setPathOfAlias('com', dirname(__FILE__).'/../components/');
 Yii::setPathOfAlias('uploads', dirname(__FILE__).'/../../uploads');
+Yii::setPathOfAlias('portfolio', dirname(__FILE__).'/../../images/portfolio');
 Yii::setPathOfAlias('boot', dirname(__FILE__).'/../extensions/bootstrap');
-Yii::setPathOfAlias('smodal', dirname(__FILE__).'/../extensions/smodal');
 
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-return array(
+$config=  array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Sampa',
+	'name'=>'Cv databas',
 
 	// preloading 'log' component
 	'preload'=>array(
@@ -32,41 +32,32 @@ return array(
 		'ext.bootstrap.components.*',
 		'editable.*',
 		'ext.CAdvancedArFindBehavior',
-		'application.modules.sdashboard.components.*',
-		'application.modules.sdashboard.models.*',
 		'ext.smenu.SMenu',
+		'ext.YiiMailer.YiiMailer',
+		'ext.easyimage.EasyImage',
 	),
 
-	'defaultController'=>'site',
+	'defaultController'=>'post',
 
 	// application components
 	'components'=>array(
-		'clientScript' => array(
-		    'class' => 'com.NLSClientScript',
-		    //'excludePattern' => '/\.tpl/i', //js regexp, files with matching paths won't be filtered is set to other than 'null'
-		    //'includePattern' => '/\.php/', //js regexp, only files with matching paths will be filtered if set to other than 'null'
-		 
-		    'mergeJs' => false, //def:true
-		    'compressMergedJs' => false, //def:false
-		 
-		    'mergeCss' => false, //def:true
-		    'compressMergedCss' => false, //def:false    
-		 
-		    //'serverBaseUrl' => 'http://localhost', //can be optionally set here
-		    'mergeAbove' => 1, //def:1, only "more than this value" files will be merged,
-		    'curlTimeOut' => 5, //def:5, see curl_setopt() doc
-		    'curlConnectionTimeOut' => 10, //def:10, see curl_setopt() doc
-		 
-		    'appVersion'=>1.0 //if set, it will be appended to the urls of the merged scripts/css
-	  ),
+
 		'editable' => array(
             'class'     => 'editable.EditableConfig',
-            'form'      => 'bootstrap',        //form style: 'bootstrap', 'jqueryui', 'plain' 
-            'mode'      => 'popup',            //mode: 'popup' or 'inline'  
+            'form'      => 'plain',        //form style: 'bootstrap', 'jqueryui', 'plain'
+            'mode'      => 'inline',            //mode: 'popup' or 'inline'
             'defaults'  => array(              //default settings for all editable elements
                'emptytext' => 'Click to edit'
             )
-        ), 
+        ),
+        'easyImage' => array(
+        'class' => 'application.extensions.easyimage.EasyImage',
+        //'driver' => 'GD',
+        //'quality' => 100,
+        //'cachePath' => '/assets/easyimage/',
+        //'cacheTime' => 2592000,
+        'retinaSupport' => false,
+		),
         'file'=>array(
     	    'class'=>'ext.file.CFile',
 	    ),
@@ -98,17 +89,7 @@ return array(
 		    'sessionTableName' => 'actual_table_name',
 			'cookieMode'=>'only',
 		),
-		
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=skeleton',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-			'tablePrefix' => 'tbl_',
-			 'enableParamLogging' => true,
-		),
-		
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
             'errorAction'=>'site/error',
@@ -118,16 +99,13 @@ return array(
         	'showScriptName'=>false,
         	'caseSensitive'=>false,
         	'rules'=>array(
+				'blog'=>'/post/index',
 				'about'=>'/site/page/view/about',
 				'contact'=>'/site/contact',
+				'logout'=>'/site/logout',
+				'portfolio'=>'/site/page/view/portfolio',
 				'login'=>'/site/login',
-				'sprism'=>'/site/page/view/sprism',
-				'smodal'=>'/site/page/view/smodal',
-				'smenu'=>'/site/page/view/smenu',
-				'sgii'=>'/site/page/view/sgii',
-				'snippets'=>'/site/page/view/snippets',
-        		'post/<id:\d+>/<title:.*?>'=>'/post/view',
-        		'posts/<tag:.*?>'=>'/post/index',
+				'view/<action>'=>'/site/page/view/<action>',
         		'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
         	),
         ),
@@ -141,13 +119,13 @@ return array(
 		        //'logFile' => 'db.log',
 		        ),
 				// uncomment the following to show log messages on web pages
-				
+
 				array(
 					'class'=>'CWebLogRoute',
 					'levels'=>'trace,log',
 		    	    'categories' => 'system.db.CDbCommand',
 				),*/
-				
+
 			),
 		),
 	),
@@ -156,7 +134,7 @@ return array(
             'class'=>'system.gii.GiiModule',
             'password'=>'123',
             'generatorPaths' => array(
-				'ext.sGii', 
+				'ext.sGii',
 				'boot.gii.bootstrap'
 			),
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
@@ -170,10 +148,28 @@ return array(
 	        'appLayout' => 'application.views.layouts.main', // the layout used by the module.
         	'viewDir' => null, // the path to view files to use with this module.
   		),
- 	  	'sdashboard'=>array(),
 
     ),
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>require(dirname(__FILE__).'/params.php'),
+	'sourceLanguage' => 'en_us',
+	'language'=>'en_us'
 );
+
+switch ($_SERVER['SERVER_NAME']) {
+    case 'danielvdb.se':
+        $config = CMap::mergeArray(
+            $config,
+            require(dirname(__FILE__) . '/prod.php')
+        );
+        break;
+    default:
+        $config = CMap::mergeArray(
+            $config,
+            require(dirname(__FILE__) . '/dev.php')
+        );
+        break;
+}
+
+return $config;
